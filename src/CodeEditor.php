@@ -95,7 +95,7 @@ class CodeEditor extends Module implements BootstrapInterface
     {
         // Set up our alias
         Craft::setAlias('@nystudio107/code-editor', $this->getBasePath());
-        Craft::setAlias('@codeEditorEndpointUrl', UrlHelper::actionUrl('code-editor/autocomplete/index'));
+        Craft::setAlias('@codeEditorEndpointUrl', UrlHelper::actionUrl('codeeditor/autocomplete/index'));
         // Register our module
         Craft::$app->setModule($this->id, $this);
         // Translation category

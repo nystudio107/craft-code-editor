@@ -27,7 +27,7 @@ class Settings extends Model
     // =========================================================================
 
     /**
-     * @var bool Whether to allow anonymous access be allowed to the code-editor/autocomplete/index endpoint
+     * @var bool Whether to allow anonymous access be allowed to the codeeditor/autocomplete/index endpoint
      */
     public $allowFrontendAccess = false;
 

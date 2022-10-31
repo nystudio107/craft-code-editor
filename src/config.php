@@ -23,7 +23,7 @@ use nystudio107\codeeditor\autocompletes\SectionShorthandFieldsAutocomplete;
 use nystudio107\codeeditor\autocompletes\TwigLanguageAutocomplete;
 
 return [
-    // Whether to allow anonymous access be allowed to the code-editor/autocomplete/index endpoint
+    // Whether to allow anonymous access be allowed to the codeeditor/autocomplete/index endpoint
     'allowFrontendAccess' => false,
     // The default autcompletes to use for the default `CodeEditor` field type
     'defaultCodeEditorAutocompletes' => [

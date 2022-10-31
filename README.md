@@ -124,7 +124,7 @@ Do so by copying the `config.php` file to the Craft CMS `config/` directory, ren
 
 ```php
 return [
-    // Whether to allow anonymous access be allowed to the code-editor/autocomplete/index endpoint
+    // Whether to allow anonymous access be allowed to the codeeditor/autocomplete/index endpoint
     'allowFrontendAccess' => true,
     // The default autcompletes to use for the default `CodeEditor` field type
     'defaultCodeEditorAutocompletes' => [
@@ -148,7 +148,7 @@ Create your own `<textarea>` element and include the necessary JavaScript, passi
 {{ codeEditor.includeJs("myCodeEditor") }}
 ```
 
-Enabling the `allowFrontendAccess` setting allows access to the `code-editor/autocomplete/index` endpoint, and add the `code-editor/templates` directory to the template roots.
+Enabling the `allowFrontendAccess` setting allows access to the `codeeditor/autocomplete/index` endpoint, and add the `code-editor/templates` directory to the template roots.
 
 ### Additional Options
 
