@@ -1,0 +1,59 @@
+{% macro includeJs(fieldId, fieldType = "Twigfield", wrapperClass = "", editorOptions = {}, twigfieldOptions = {}, placeholderText = '') %}
+    {% set editorOptions = editorOptions|merge({
+        ariaLabel: (editorOptions.ariaLabel ?? '' ~ 'Twig code is supported.'|t('codeeditor'))|trim,
+    }) %}
+    {# @var \craft\web\AssetBundle bundle #}
+    {% set bundle = view.registerAssetBundle("nystudio107\\twigfield\\assetbundles\\twigfield\\TwigfieldAsset") %}
+    {% css %}
+        @font-face {
+        font-family: "codicon-override";
+        src: url("{{ bundle.baseUrl }}/fonts/codicon.ttf") format("truetype");
+        }
+    {% endcss %}
+    {% js at head %}
+        window.codeEditorBaseAssetsUrl = "{{ bundle.baseUrl }}/";
+    {% endjs %}
+    {% js %}
+        makeMonacoEditor("{{ (fieldId)|namespaceInputId }}", "{{ fieldType }}", "{{ wrapperClass }}", '{{ editorOptions | json_encode | e('js') }}', '{{ twigfieldOptions | json_encode | e('js') }}', "{{ alias('@codeEditorEndpointUrl') }}", "{{ placeholderText }}");
+    {% endjs %}
+{% endmacro %}
+
+{% macro textareaField(config, fieldType = "Twigfield", wrapperClass = "", editorOptions = {}, twigfieldOptions = {}) %}
+    {% import "_includes/forms" as forms %}
+    {% set config = config|merge({id: config.id ?? "twigfield#{random()}"}) %}
+    {{ forms.textareaField(config) }}
+    {% set twigfieldOptions =  {
+        singleLineEditor: false,
+    } | merge(twigfieldOptions) %}
+    {{ _self.includeJs(config.id, fieldType, wrapperClass, editorOptions, twigfieldOptions, config.placeholder ?? '') }}
+{% endmacro %}
+
+{% macro textarea(config, fieldType = "Twigfield", wrapperClass = "", editorOptions = {}, twigfieldOptions = {}) %}
+    {% import "_includes/forms" as forms %}
+    {% set config = config|merge({id: config.id ?? "twigfield#{random()}"}) %}
+    {{ forms.textarea(config) }}
+    {% set twigfieldOptions =  {
+        singleLineEditor: false,
+    } | merge(twigfieldOptions) %}
+    {{ _self.includeJs(config.id, fieldType, wrapperClass, editorOptions, twigfieldOptions, config.placeholder ?? '') }}
+{% endmacro %}
+
+{% macro textField(config, fieldType = "Twigfield", wrapperClass = "", editorOptions = {}, twigfieldOptions = {}) %}
+    {% import "_includes/forms" as forms %}
+    {% set config = config|merge({id: config.id ?? "twigfield#{random()}"}) %}
+    {{ forms.textField(config) }}
+    {% set twigfieldOptions =  {
+        singleLineEditor: true,
+    } | merge(twigfieldOptions) %}
+    {{ _self.includeJs(config.id, fieldType, wrapperClass, editorOptions, twigfieldOptions, config.placeholder ?? '') }}
+{% endmacro %}
+
+{% macro text(config, fieldType = "Twigfield", wrapperClass = "", editorOptions = {}, twigfieldOptions = {}) %}
+    {% import "_includes/forms" as forms %}
+    {% set config = config|merge({id: config.id ?? "twigfield#{random()}"}) %}
+    {{ forms.text(config) }}
+    {% set twigfieldOptions =  {
+        singleLineEditor: true,
+    } | merge(twigfieldOptions) %}
+    {{ _self.includeJs(config.id, fieldType, wrapperClass, editorOptions, twigfieldOptions, config.placeholder ?? '') }}
+{% endmacro %}

@@ -1,0 +1,55 @@
+<?php
+/**
+ * CodeEditor for Craft CMS
+ *
+ * Provides a twig editor field with Twig & Craft API autocomplete
+ *
+ * @link      https://nystudio107.com
+ * @copyright Copyright (c) 2022 nystudio107
+ */
+
+namespace nystudio107\codeeditor\controllers;
+
+use craft\helpers\Json;
+use craft\web\Controller;
+use nystudio107\codeeditor\Twigfield;
+use yii\web\Response;
+
+/**
+ * @author    nystudio107
+ * @package   CodeEditor
+ * @since     1.0.0
+ */
+class AutocompleteController extends Controller
+{
+    /**
+     * @inheritDoc
+     */
+    public function beforeAction($action): bool
+    {
+        if (Twigfield::$settings->allowFrontendAccess) {
+            $this->allowAnonymous = 1;
+        }
+
+        return parent::beforeAction($action);
+    }
+
+    /**
+     * Return all of the autocomplete items in JSON format
+     *
+     * @param string $fieldType
+     * @param string $twigfieldOptions
+     * @return Response
+     */
+    public function actionIndex(string $fieldType = Twigfield::DEFAULT_FIELD_TYPE, string $twigfieldOptions = ''): Response
+    {
+        $options = [];
+        $parsedJson = Json::decodeIfJson($twigfieldOptions);
+        if (is_array($parsedJson)) {
+            $options = $parsedJson;
+        }
+        $result = Twigfield::getInstance()->autocomplete->generateAutocompletes($fieldType, $options);
+
+        return $this->asJson($result);
+    }
+}

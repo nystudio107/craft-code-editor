@@ -1,0 +1,52 @@
+{
+  "name": "nystudio107/craft-code-editor",
+  "description": "Provides a code editor field with Twig & Craft API autocomplete",
+  "type": "yii2-extension",
+  "version": "1.0.20",
+  "keywords": [
+    "code",
+    "editor",
+    "twig",
+    "javascript",
+    "css",
+    "markdown",
+    "monaco",
+    "craftcms",
+    "craft",
+    "cms"
+  ],
+  "support": {
+    "docs": "https://github.com/nystudio107/craft-code-editor/blob/v1/README.md",
+    "issues": "https://github.com/nystudio107/craft-code-editor/issues",
+    "source": "https://github.com/nystudio107/craft-code-editor"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "nystudio107",
+      "homepage": "https://nystudio107.com"
+    }
+  ],
+  "require": {
+    "phpdocumentor/reflection-docblock": "^5.0.0"
+  },
+  "require-dev": {
+    "craftcms/cms": "^3.0.0 || ^4.0.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "craftcms/plugin-installer": true,
+      "yiisoft/yii2-composer": true
+    },
+    "optimize-autoloader": true,
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "nystudio107\\codeeditor\\": "src/"
+    }
+  },
+  "extra": {
+    "bootstrap": "nystudio107\\codeeditor\\CodeEditor"
+  }
+}
