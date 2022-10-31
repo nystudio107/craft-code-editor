@@ -2,7 +2,7 @@
 /**
  * CodeEditor for Craft CMS
  *
- * Provides a twig editor field with Twig & Craft API autocomplete
+ * Provides a code editor field with Twig & Craft API autocomplete
  *
  * @link      https://nystudio107.com
  * @copyright Copyright (c) 2022 nystudio107
@@ -35,20 +35,20 @@ class AutocompleteService extends Component
     // =========================================================================
 
     /**
-     * @event RegisterTwigfieldAutocompletesEvent The event that is triggered when registering
-     *        Twigfield Autocomplete types
+     * @event RegisterCodeEditorAutocompletesEvent The event that is triggered when registering
+     *        CodeEditor Autocomplete types
      *
      * Autocomplete Generator types must implement [[AutocompleteInterface]]. [[AutoComplete]]
      * provides a base implementation.
      *
      * ```php
      * use nystudio107\codeeditor\services\AutocompleteService;
-     * use nystudio107\codeeditor\events\RegisterTwigfieldAutocompletesEvent;
+     * use nystudio107\codeeditor\events\RegisterCodeEditorAutocompletesEvent;
      * use yii\base\Event;
      *
      * Event::on(AutocompleteService::class,
      *     AutocompleteService::EVENT_REGISTER_CODEEDITOR_AUTOCOMPLETES,
-     *     function(RegisterTwigfieldAutocompletesEvent $event) {
+     *     function(RegisterCodeEditorAutocompletesEvent $event) {
      *         $event->types[] = MyAutocomplete::class;
      *     }
      * );
@@ -57,7 +57,7 @@ class AutocompleteService extends Component
      *
      * Event::on(AutocompleteService::class,
      *     AutocompleteService::EVENT_REGISTER_CODEEDITOR_AUTOCOMPLETES,
-     *     function(RegisterTwigfieldAutocompletesEvent $event) {
+     *     function(RegisterCodeEditorAutocompletesEvent $event) {
      *         $config = [
      *             'property' => value,
      *         ];
@@ -69,7 +69,7 @@ class AutocompleteService extends Component
      */
     const EVENT_REGISTER_CODEEDITOR_AUTOCOMPLETES = 'registerCodeFieldAutocompletes';
 
-    const AUTOCOMPLETE_CACHE_TAG = 'TwigFieldAutocompleteTag';
+    const AUTOCOMPLETE_CACHE_TAG = 'CodeEditorAutocompleteTag';
 
     // Public Properties
     // =========================================================================
@@ -77,7 +77,7 @@ class AutocompleteService extends Component
     /**
      * @var string Prefix for the cache key
      */
-    public $cacheKeyPrefix = 'TwigFieldAutocomplete';
+    public $cacheKeyPrefix = 'CodeEditorAutocomplete';
 
     /**
      * @var int Cache duration
@@ -106,10 +106,10 @@ class AutocompleteService extends Component
     /**
      * Call each of the autocompletes to generate their complete items
      * @param string $fieldType
-     * @param array $twigfieldOptions
+     * @param array $codeEditorOptions
      * @return array
      */
-    public function generateAutocompletes(string $fieldType = Twigfield::DEFAULT_FIELD_TYPE, array $twigfieldOptions = []): array
+    public function generateAutocompletes(string $fieldType = CodeEditor::DEFAULT_FIELD_TYPE, array $codeEditorOptions = []): array
     {
         $autocompleteItems = [];
         $autocompletes = $this->getAllAutocompleteGenerators($fieldType);
@@ -118,7 +118,7 @@ class AutocompleteService extends Component
             // Assume the generator is a class name string
             $config = [
                 'fieldType' => $fieldType,
-                'twigfieldOptions' => $twigfieldOptions,
+                'codeEditorOptions' => $codeEditorOptions,
             ];
             $autocompleteClass = $autocompleteGenerator;
             // If we're passed in an array instead, extract the class name and config from the key/value pair
@@ -151,7 +151,7 @@ class AutocompleteService extends Component
                 ];
             }, $this->cacheDuration, $dependency);
         }
-        Craft::info('Twigfield Autocompletes generated', __METHOD__);
+        Craft::info('CodeEditor Autocompletes generated', __METHOD__);
 
         return $autocompleteItems;
     }
@@ -166,7 +166,7 @@ class AutocompleteService extends Component
     {
         $cache = Craft::$app->getCache();
         TagDependency::invalidate($cache, self::AUTOCOMPLETE_CACHE_TAG . $autocompleteName);
-        Craft::info('Twigfield caches invalidated', __METHOD__);
+        Craft::info('CodeEditor caches invalidated', __METHOD__);
     }
 
     /**
@@ -189,10 +189,10 @@ class AutocompleteService extends Component
      *
      * @return string[] The available autocompletes classes
      */
-    public function getAllAutocompleteGenerators(string $fieldType = Twigfield::DEFAULT_FIELD_TYPE): array
+    public function getAllAutocompleteGenerators(string $fieldType = CodeEditor::DEFAULT_FIELD_TYPE): array
     {
         $event = new RegisterCodeEditorAutocompletesEvent([
-            'types' => CodeEditor::$settings->defaultTwigfieldAutocompletes,
+            'types' => CodeEditor::$settings->defaultCodeEditorAutocompletes,
             'fieldType' => $fieldType,
         ]);
         $this->trigger(self::EVENT_REGISTER_CODEEDITOR_AUTOCOMPLETES, $event);

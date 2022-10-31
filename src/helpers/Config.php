@@ -2,7 +2,7 @@
 /**
  * CodeEditor for Craft CMS
  *
- * Provides a twig editor field with Twig & Craft API autocomplete
+ * Provides a code editor field with Twig & Craft API autocomplete
  *
  * @link      https://nystudio107.com
  * @copyright Copyright (c) 2022 nystudio107
@@ -30,7 +30,7 @@ class Config
     // =========================================================================
 
     /**
-     * Loads a config file from, trying @craft/config first, then from @nystudio107/twigfield
+     * Loads a config file from, trying @craft/config first, then from @nystudio107/code-editor
      *
      * @param string $fileName
      *
@@ -44,7 +44,7 @@ class Config
         $path = Craft::getAlias('@config/' . $fileName, false);
         if ($path === false || !file_exists($path)) {
             // Now try our own internal config
-            $path = Craft::getAlias('@nystudio107/twigfield/config.php', false);
+            $path = Craft::getAlias('@nystudio107/code-editor/config.php', false);
             if ($path === false || !file_exists($path)) {
                 return [];
             }

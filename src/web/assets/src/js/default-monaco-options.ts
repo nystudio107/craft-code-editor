@@ -2,7 +2,7 @@
 // ref: https://microsoft.github.io/monaco-editor/api/enums/monaco.editor.EditorOption.html
 import * as monaco from "monaco-editor";
 
-export const defaultMonacoEditorOptions: monaco.editor.IStandaloneEditorConstructionOptions = {
+export const defaultMonacoOptions: monaco.editor.IStandaloneEditorConstructionOptions = {
   language: 'twig',
   theme: 'vs',
   automaticLayout: true,

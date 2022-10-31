@@ -2,7 +2,7 @@
 /**
  * CodeEditor for Craft CMS
  *
- * Provides a twig editor field with Twig & Craft API autocomplete
+ * Provides a code editor field with Twig & Craft API autocomplete
  *
  * @link      https://nystudio107.com
  * @copyright Copyright (c) 2022 nystudio107

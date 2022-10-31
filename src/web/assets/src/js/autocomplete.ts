@@ -1,7 +1,7 @@
 /**
- * Twigfield Craft CMS
+ * CodeEditor for Craft CMS
  *
- * Provides a twig editor field with Twig & Craft API autocomplete
+ * Provides a code editor field with Twig & Craft API autocomplete
  *
  * @link      https://nystudio107.com
  * @copyright Copyright (c) 2022 nystudio107
@@ -16,8 +16,8 @@
 declare global {
   interface Window {
     monaco: string;
-    monacoAutocompleteItems: {[key: string]: string},
-    twigfieldFieldTypes: {[key: string]: string},
+    monacoAutocompleteItems: { [key: string]: string },
+    codeEditorFieldTypes: { [key: string]: string },
   }
 }
 
@@ -28,8 +28,8 @@ const COMPLETION_KEY = '__completions';
 /**
  * Get the last item from the array
  *
- * @param {Array<T>} arr
- * @returns {T}
+ * @param {Array} arr
+ * @returns {unknown}
  */
 function getLastItem<T>(arr: Array<T>): T {
   return arr[arr.length - 1];
@@ -46,7 +46,7 @@ function addCompletionItemsToMonaco(completionItems: AutocompleteItem, autocompl
   monaco.languages.registerCompletionItemProvider('twig', {
     triggerCharacters: ['.', '('],
     provideCompletionItems: function (model, position, token) {
-      let result: monaco.languages.CompletionItem[] = [];
+      const result: monaco.languages.CompletionItem[] = [];
       let currentItems = completionItems;
       // Get the last word the user has typed
       const currentLine = model.getValueInRange({
@@ -114,7 +114,7 @@ function addCompletionItemsToMonaco(completionItems: AutocompleteItem, autocompl
       }
       // Get all the child properties
       if (typeof currentItems !== 'undefined') {
-        for (let item in currentItems) {
+        for (const item in currentItems) {
           if (currentItems.hasOwnProperty(item) && !item.startsWith("__")) {
             const completionItem = currentItems[item][COMPLETION_KEY];
             if (typeof completionItem !== 'undefined') {
@@ -122,7 +122,7 @@ function addCompletionItemsToMonaco(completionItems: AutocompleteItem, autocompl
               // which needs to be removed each time the autocomplete objects are re-used
               delete completionItem.range;
               if ('documentation' in completionItem && typeof completionItem.documentation !== 'object') {
-                let docs = completionItem.documentation;
+                const docs = completionItem.documentation;
                 completionItem.documentation = {
                   value: docs,
                   isTrusted: true,
@@ -153,7 +153,6 @@ function addCompletionItemsToMonaco(completionItems: AutocompleteItem, autocompl
 function addHoverHandlerToMonaco(completionItems: AutocompleteItem, autocompleteType: AutocompleteTypes): void {
   monaco.languages.registerHoverProvider('twig', {
     provideHover: function (model, position) {
-      let result: monaco.languages.Hover;
       const currentLine = model.getValueInRange({
         startLineNumber: position.lineNumber,
         startColumn: 0,
@@ -204,7 +203,7 @@ function addHoverHandlerToMonaco(completionItems: AutocompleteItem, autocomplete
               {value: docs},
             ]
           }
-          return  finalHover
+          return finalHover
         }
       }
 
@@ -217,28 +216,28 @@ function addHoverHandlerToMonaco(completionItems: AutocompleteItem, autocomplete
  * Fetch the autocompletion items frin the endpoint
  *
  * @param {string} fieldType - The field's passed in type, used for autocomplete caching
- * @param {string} codefieldOptions - JSON encoded string of arbitrary CodeEditorOptions for the field
+ * @param {string} codeEditorOptions - JSON encoded string of arbitrary CodeEditorOptions for the field
  * @param {string} endpointUrl - The controller action endpoint for generating autocomplete items
  */
-function getCompletionItemsFromEndpoint(fieldType: string = 'Twigfield', codefieldOptions: string = '', endpointUrl: string): void {
+function getCompletionItemsFromEndpoint(fieldType = 'CodeEditor', codeEditorOptions = '', endpointUrl: string): void {
   const searchParams = new URLSearchParams();
   if (typeof fieldType !== 'undefined') {
     searchParams.set('fieldType', fieldType);
   }
-  if (typeof codefieldOptions !== 'undefined') {
-    searchParams.set('twigfieldOptions', codefieldOptions);
+  if (typeof codeEditorOptions !== 'undefined') {
+    searchParams.set('codeEditorOptions', codeEditorOptions);
   }
   const glueChar = endpointUrl.includes('?') ? '&' : '?';
   // Only issue the XHR if we haven't loaded the autocompletes for this fieldType already
-  if (typeof window.twigfieldFieldTypes === 'undefined') {
-    window.twigfieldFieldTypes = {};
+  if (typeof window.codeEditorFieldTypes === 'undefined') {
+    window.codeEditorFieldTypes = {};
   }
-  if (fieldType in window.twigfieldFieldTypes) {
+  if (fieldType in window.codeEditorFieldTypes) {
     return;
   }
-  window.twigfieldFieldTypes[fieldType] = fieldType;
+  window.codeEditorFieldTypes[fieldType] = fieldType;
   // Ping the controller endpoint
-  let request = new XMLHttpRequest();
+  const request = new XMLHttpRequest();
   request.open('GET', endpointUrl + glueChar + searchParams.toString(), true);
   request.onload = function () {
     if (request.status >= 200 && request.status < 400) {
@@ -246,7 +245,7 @@ function getCompletionItemsFromEndpoint(fieldType: string = 'Twigfield', codefie
       if (typeof window.monacoAutocompleteItems === 'undefined') {
         window.monacoAutocompleteItems = {};
       }
-      // Don't add a completion more than once, as might happen with multiple Twigfield instances
+      // Don't add a completion more than once, as might happen with multiple CodeEDitor instances
       // on the same page, because the completions are global in Monaco
       for (const [name, autocomplete] of Object.entries(completionItems)) {
         if (!(autocomplete.name in window.monacoAutocompleteItems)) {

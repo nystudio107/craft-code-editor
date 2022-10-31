@@ -2,7 +2,7 @@
 /**
  * CodeEditor for Craft CMS
  *
- * Provides a twig editor field with Twig & Craft API autocomplete
+ * Provides a code editor field with Twig & Craft API autocomplete
  *
  * @link      https://nystudio107.com
  * @copyright Copyright (c) 2022 nystudio107
@@ -37,13 +37,13 @@ class CodeEditor extends Module implements BootstrapInterface
 
     const ID = 'codeeditor';
 
-    const DEFAULT_FIELD_TYPE = 'Twigfield';
+    const DEFAULT_FIELD_TYPE = 'CodeEditor';
 
     // Public Static Properties
     // =========================================================================
 
     /**
-     * @var Settings The Twigfield config settings
+     * @var Settings The CodeEditor config settings
      */
     public static $settings = null;
 
@@ -72,7 +72,7 @@ class CodeEditor extends Module implements BootstrapInterface
         if (!$app instanceof CraftWebApp) {
             return;
         }
-        // Set the instance of this module class, so we can later access it with `Twigfield::getInstance()`
+        // Set the instance of this module class, so we can later access it with `CodeEditor::getInstance()`
         static::setInstance($this);
         // Configure our module
         $this->configureModule();
@@ -80,7 +80,7 @@ class CodeEditor extends Module implements BootstrapInterface
         $this->registerComponents();
         // Register our event handlers
         $this->registerEventHandlers();
-        Craft::info('Twigfield module bootstrapped', __METHOD__);
+        Craft::info('CodeEditor module bootstrapped', __METHOD__);
     }
 
     // Protected Methods
@@ -94,8 +94,8 @@ class CodeEditor extends Module implements BootstrapInterface
     protected function configureModule(): void
     {
         // Set up our alias
-        Craft::setAlias('@nystudio107/twigfield', $this->getBasePath());
-        Craft::setAlias('@codeEditorEndpointUrl', UrlHelper::actionUrl('twigfield/autocomplete/index'));
+        Craft::setAlias('@nystudio107/code-editor', $this->getBasePath());
+        Craft::setAlias('@codeEditorEndpointUrl', UrlHelper::actionUrl('code-editor/autocomplete/index'));
         // Register our module
         Craft::$app->setModule($this->id, $this);
         // Translation category
@@ -105,7 +105,7 @@ class CodeEditor extends Module implements BootstrapInterface
             $i18n->translations[$this->id] = [
                 'class' => PhpMessageSource::class,
                 'sourceLanguage' => 'en-US',
-                'basePath' => '@nystudio107/twigfield/translations',
+                'basePath' => '@nystudio107/code-editor/translations',
                 'forceTranslation' => true,
                 'allowOverrides' => true,
             ];

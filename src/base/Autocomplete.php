@@ -2,7 +2,7 @@
 /**
  * CodeEditor for Craft CMS
  *
- * Provides a twig editor field with Twig & Craft API autocomplete
+ * Provides a code editor field with Twig & Craft API autocomplete
  *
  * @link      https://nystudio107.com
  * @copyright Copyright (c) 2022 nystudio107
@@ -13,8 +13,8 @@ namespace nystudio107\codeeditor\base;
 use Craft;
 use craft\base\Model;
 use craft\helpers\ArrayHelper;
+use nystudio107\codeeditor\CodeEditor;
 use nystudio107\codeeditor\models\CompleteItem;
-use nystudio107\codeeditor\Twigfield;
 use nystudio107\codeeditor\types\AutocompleteTypes;
 
 /**
@@ -50,12 +50,12 @@ abstract class Autocomplete extends Model implements AutocompleteInterface
     /**
      * @var string The field type passed down from the template to the autocomplete
      */
-    public $fieldType = TwigField::DEFAULT_FIELD_TYPE;
+    public $fieldType = CodeEditor::DEFAULT_FIELD_TYPE;
 
     /**
-     * @var array The twigfield options object passed down from the template to the autocomplete
+     * @var array The CodeEditor options object passed down from the template to the autocomplete
      */
-    public $twigfieldOptions = [];
+    public $codeEditorOptions = [];
 
     // Protected Properties
     // =========================================================================

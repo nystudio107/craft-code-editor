@@ -1,7 +1,7 @@
 /**
- * Twigfield Craft CMS
+ * CodeEditor Craft CMS
  *
- * Provides a twig editor field with Twig & Craft API autocomplete
+ * Provides a code editor field with Twig & Craft API autocomplete
  *
  * @link      https://nystudio107.com
  * @copyright Copyright (c) 2022 nystudio107
@@ -22,11 +22,11 @@ declare global {
     makeMonacoEditor: MakeMonacoEditorFn;
     setMonacoEditorLanguage: SetMonacoEditorLanguageFn;
     setMonacoEditorTheme: SetMonacoEditorThemeFn;
-    monacoEditorInstances: {[key: string]: monaco.editor.IStandaloneCodeEditor};
+    monacoEditorInstances: { [key: string]: monaco.editor.IStandaloneCodeEditor };
   }
 }
 
-// Set the __webpack_public_path__ dynamically so we can work inside of cpresources's hashed dir name
+// Set the __webpack_public_path__ dynamically, so we can work inside cpresources's hashed dir name
 // https://stackoverflow.com/questions/39879680/example-of-setting-webpack-public-path-at-runtime
 if (typeof __webpack_public_path__ === 'undefined' || __webpack_public_path__ === '') {
   __webpack_public_path__ = window.codeEditorBaseAssetsUrl;
@@ -35,7 +35,7 @@ if (typeof __webpack_public_path__ === 'undefined' || __webpack_public_path__ ==
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import {getCompletionItemsFromEndpoint} from './autocomplete';
 import {languageIcons, languageIconTitles} from './language-icons'
-import {defaultMonacoEditorOptions} from './default-monaco-editor-options'
+import {defaultMonacoOptions} from "./default-monaco-options";
 
 /**
  * Create a Monaco Editor instance
@@ -43,26 +43,26 @@ import {defaultMonacoEditorOptions} from './default-monaco-editor-options'
  * @param {string} elementId - The id of the TextArea or Input element to replace with a Monaco editor
  * @param {string} fieldType - The field's passed in type, used for autocomplete caching
  * @param {string} wrapperClass - Classes that should be added to the field's wrapper <div>
- * @param {IStandaloneEditorConstructionOptions} editorOptions - Monaco editor options
- * @param {string} codefieldOptions - JSON encoded string of arbitrary CodeEditorOptions for the field
+ * @param {monaco.editor.IStandaloneEditorConstructionOptions} monacoOptions - Monaco editor options
+ * @param {string} codeEditorOptions - JSON encoded string of arbitrary CodeEditorOptions for the field
  * @param {string} endpointUrl - The controller action endpoint for generating autocomplete items
  * @param {string} placeholderText - Placeholder text to use for the field
  */
-function makeMonacoEditor(elementId: string, fieldType: string, wrapperClass: string, editorOptions: string, codefieldOptions: string, endpointUrl: string, placeholderText = ''): monaco.editor.IStandaloneCodeEditor | undefined {
+function makeMonacoEditor(elementId: string, fieldType: string, wrapperClass: string, monacoOptions: string, codeEditorOptions: string, endpointUrl: string, placeholderText = ''): monaco.editor.IStandaloneCodeEditor | undefined {
   const textArea = <HTMLInputElement>document.getElementById(elementId);
   const container = document.createElement('div');
-  const fieldOptions: CodeEditorOptions = JSON.parse(codefieldOptions);
+  const fieldOptions: CodeEditorOptions = JSON.parse(codeEditorOptions);
   const placeholderId = elementId + '-monaco-editor-placeholder';
   // If we can't find the passed in text area or if there is no parent node, return
   if (textArea === null || textArea.parentNode === null) {
     return;
   }
   // Monaco editor defaults, coalesced together
-  const monacoEditorOptions: monaco.editor.IStandaloneEditorConstructionOptions = JSON.parse(editorOptions);
-  const options: monaco.editor.IStandaloneEditorConstructionOptions = {...defaultMonacoEditorOptions, ...monacoEditorOptions, ...{value: textArea.value}}
+  const monacoEditorOptions: monaco.editor.IStandaloneEditorConstructionOptions = JSON.parse(monacoOptions);
+  const options: monaco.editor.IStandaloneEditorConstructionOptions = {...defaultMonacoOptions, ...monacoEditorOptions, ...{value: textArea.value}}
   // Make a sibling div for the Monaco editor to live in
   container.id = elementId + '-monaco-editor';
-  container.classList.add('monaco-editor','relative', 'box-content', 'monaco-editor-codefield', 'h-full');
+  container.classList.add('monaco-editor', 'relative', 'box-content', 'monaco-editor-codefield', 'h-full');
   // Apply any passed in classes to the wrapper div
   if (wrapperClass !== '') {
     const cl = container.classList;
@@ -131,7 +131,7 @@ function makeMonacoEditor(elementId: string, fieldType: string, wrapperClass: st
     }
   }
   // Get the autocompletion items
-  getCompletionItemsFromEndpoint(fieldType, codefieldOptions, endpointUrl);
+  getCompletionItemsFromEndpoint(fieldType, codeEditorOptions, endpointUrl);
   // Custom resizer to always keep the editor full-height, without needing to scroll
   let ignoreEvent = false;
   const updateHeight = () => {
@@ -283,7 +283,7 @@ function setMonacoEditorLanguage(editor: monaco.editor.IStandaloneCodeEditor, la
  * Set the theme for the Monaco editor instance
  *
  * @param {monaco.editor.IStandaloneCodeEditor} editor - the Monaco editor instance
- * @param {string | undefined} language - the editor theme
+ * @param {string | undefined} theme - the editor theme
  */
 function setMonacoEditorTheme(editor: monaco.editor.IStandaloneCodeEditor, theme: string | undefined): void {
   const editorTheme = theme ?? 'vs';
