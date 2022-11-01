@@ -17,7 +17,7 @@ use yii\base\BaseObject;
 /**
  * @author    nystudio107
  * @package   CodeEditor
- * @since     1.0.12
+ * @since     1.0.0
  */
 class ObjectAutocomplete extends ObjectParserAutocomplete
 {

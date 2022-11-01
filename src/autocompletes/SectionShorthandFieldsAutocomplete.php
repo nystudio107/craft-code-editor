@@ -21,7 +21,7 @@ use nystudio107\codeeditor\types\CompleteItemKind;
 /**
  * @author    nystudio107
  * @package   CodeEditor
- * @since     1.0.13
+ * @since     1.0.0
  */
 class SectionShorthandFieldsAutocomplete extends ObjectParserAutocomplete
 {

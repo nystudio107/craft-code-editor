@@ -25,7 +25,7 @@ use yii\di\ServiceLocator;
 /**
  * @author    nystudio107
  * @package   CodeEditor
- * @since     1.0.12
+ * @since     1.0.0
  */
 abstract class ObjectParserAutocomplete extends Autocomplete implements ObjectParserInterface
 {

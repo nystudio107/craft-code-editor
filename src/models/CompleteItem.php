@@ -20,7 +20,7 @@ use nystudio107\codeeditor\types\CompleteItemKind;
  *
  * @author    nystudio107
  * @package   CodeEditor
- * @since     1.0.11
+ * @since     1.0.0
  */
 class CompleteItem extends Model
 {

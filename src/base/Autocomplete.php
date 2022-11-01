@@ -20,7 +20,7 @@ use nystudio107\codeeditor\types\AutocompleteTypes;
 /**
  * @author    nystudio107
  * @package   CodeEditor
- * @since     1.0.12
+ * @since     1.0.0
  */
 abstract class Autocomplete extends Model implements AutocompleteInterface
 {

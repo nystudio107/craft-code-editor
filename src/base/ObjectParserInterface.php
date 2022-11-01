@@ -13,7 +13,7 @@ namespace nystudio107\codeeditor\base;
 /**
  * @author    nystudio107
  * @package   CodeEditor
- * @since     1.0.12
+ * @since     1.0.0
  */
 interface ObjectParserInterface
 {
