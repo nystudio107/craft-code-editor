@@ -173,7 +173,7 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
    */
   function focusNextElement(): void {
     const focusable = getFocusableElements();
-    if (document.activeElement instanceof HTMLFormElement) {
+    if (document.activeElement instanceof HTMLElement) {
       const index = focusable.indexOf(document.activeElement);
       if (index > -1) {
         const nextElement = focusable[index + 1] || focusable[0];
@@ -187,7 +187,7 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
    */
   function focusPrevElement(): void {
     const focusable = getFocusableElements();
-    if (document.activeElement instanceof HTMLFormElement) {
+    if (document.activeElement instanceof HTMLElement) {
       const index = focusable.indexOf(document.activeElement);
       if (index > -1) {
         const prevElement = focusable[index - 1] || focusable[focusable.length];
@@ -205,8 +205,8 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
     let focusable: Array<HTMLElement> = [];
     // add all elements we want to include in our selection
     const focusableElements = 'a:not([disabled]), button:not([disabled]), select:not([disabled]), input[type=text]:not([disabled]), [tabindex]:not([disabled]):not([tabindex="-1"])';
-    if (document.activeElement instanceof HTMLFormElement) {
-      const activeElement: HTMLFormElement = document.activeElement;
+    if (document.activeElement instanceof HTMLElement) {
+      const activeElement: HTMLFormElement = <HTMLFormElement>document.activeElement;
       if (activeElement && activeElement.form) {
         focusable = Array.prototype.filter.call(activeElement.form.querySelectorAll(focusableElements),
           function (element) {
