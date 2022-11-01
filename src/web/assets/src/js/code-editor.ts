@@ -33,7 +33,7 @@ if (typeof __webpack_public_path__ === 'undefined' || __webpack_public_path__ ==
 }
 
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-import {getCompletionItemsFromEndpoint} from './autocomplete';
+import {getCompletionItemsFromEndpoint} from './twig-autocomplete';
 import {languageIcons, languageIconTitles} from './language-icons'
 import {defaultMonacoOptions} from "./default-monaco-options";
 
@@ -130,8 +130,10 @@ function makeMonacoEditor(elementId: string, fieldType: string, wrapperClass: st
       })
     }
   }
-  // Get the autocompletion items
-  getCompletionItemsFromEndpoint(fieldType, codeEditorOptions, endpointUrl);
+  // Get the autocompletion items if the language is Twig
+  if (options.language === 'twig') {
+    getCompletionItemsFromEndpoint(fieldType, codeEditorOptions, endpointUrl);
+  }
   // Custom resizer to always keep the editor full-height, without needing to scroll
   let ignoreEvent = false;
   const updateHeight = () => {
