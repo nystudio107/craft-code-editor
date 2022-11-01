@@ -26,7 +26,7 @@ To install Code Editor, follow these steps:
 
 Code Editor provides a full-featured code editor with syntax highlighting via the powerful [Monaco Editor](https://microsoft.github.io/monaco-editor/) (the same editor that is the basis for VS Code).
 
-It also can handle hundreds of other code languages, such as JavaScript, TypeScript, CSS, Markdown, and a [whole lot more](https://microsoft.github.io/monaco-editor/).
+It also can handle hundreds of other code languages, such as [JavaScript](https://github.com/doublesecretagency/craft-cpjs/pull/6), TypeScript, [CSS](https://github.com/doublesecretagency/craft-cpcss/pull/20), Markdown, and a [whole lot more](https://microsoft.github.io/monaco-editor/).
 
 Code Editor provides full autocompletion for [Twig](https://twig.symfony.com/doc/3.x/) filters/functions/tags, and the full [Craft CMS](https://craftcms.com/docs/4.x/) API, including installed plugins:
 
@@ -46,7 +46,7 @@ Once you've added the `nystudio107/craft-code-editor` package to your plugin, mo
 
 Code Editor is not a Craft CMS plugin, rather a package to be utilized by a plugin, module, or project.
 
-It can be very easy to add to an existing project, as you can see from the [Preparse field pull request](https://github.com/besteadfast/craft-preparse-field/pull/81/files) that adds it the [Preparse plugin](https://github.com/besteadfast/craft-preparse-field).
+It can be very easy to add to an existing project, as you can see from the [Preparse field pull request](https://github.com/besteadfast/craft-preparse-field/pull/87) that adds it the [Preparse plugin](https://github.com/besteadfast/craft-preparse-field).
 
 ### In the Craft CP
 
