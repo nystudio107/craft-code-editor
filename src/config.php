@@ -12,7 +12,7 @@
  * CodeEditor config.php
  *
  * This file exists to store config settings for CodeEditor. This file can
- * be used in place, or it can be put into @craft/config/ as `code-editor.php`
+ * be used in place, or it can be put into @craft/config/ as `codeeditor.php`
  *
  * This file is multi-environment aware as well, so you can have different
  * settings groups for each environment, just as you do for `general.php`

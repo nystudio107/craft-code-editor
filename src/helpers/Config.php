@@ -30,7 +30,7 @@ class Config
     // =========================================================================
 
     /**
-     * Loads a config file from, trying @craft/config first, then from @nystudio107/code-editor
+     * Loads a config file from, trying @craft/config first, then from @nystudio107/codeeditor
      *
      * @param string $fileName
      *

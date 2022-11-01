@@ -94,7 +94,7 @@ class CodeEditor extends Module implements BootstrapInterface
     protected function configureModule(): void
     {
         // Set up our alias
-        Craft::setAlias('@nystudio107/code-editor', $this->getBasePath());
+        Craft::setAlias('@nystudio107/codeeditor', $this->getBasePath());
         Craft::setAlias('@codeEditorEndpointUrl', UrlHelper::actionUrl('codeeditor/autocomplete/index'));
         // Register our module
         Craft::$app->setModule($this->id, $this);
@@ -105,7 +105,7 @@ class CodeEditor extends Module implements BootstrapInterface
             $i18n->translations[$this->id] = [
                 'class' => PhpMessageSource::class,
                 'sourceLanguage' => 'en-US',
-                'basePath' => '@nystudio107/code-editor/translations',
+                'basePath' => '@nystudio107/codeeditor/translations',
                 'forceTranslation' => true,
                 'allowOverrides' => true,
             ];
