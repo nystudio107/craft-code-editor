@@ -2,14 +2,6 @@ interface StringMap {
   [key: string]: string;
 }
 
-export const languageIconTitles: StringMap = {
-  'twig': 'Twig code is supported',
-  'javascript': 'JavaScript code is supported',
-  'markdown': 'Markdown code is supported',
-  'typescript': 'TypeScript code is supported',
-  'css': 'CSS code is supported',
-}
-
 export const languageIcons: StringMap = {
   // Twig
   'twig': `<svg width="8px" height="8px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 320 320" style="enable-background:new 0 0 320 320;" xml:space="preserve">

@@ -34,7 +34,7 @@ if (typeof __webpack_public_path__ === 'undefined' || __webpack_public_path__ ==
 
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import {getCompletionItemsFromEndpoint} from './twig-autocomplete';
-import {languageIcons, languageIconTitles} from './language-icons'
+import {languageIcons} from './language-icons'
 import {defaultMonacoOptions} from "./default-monaco-options";
 
 /**
@@ -266,14 +266,14 @@ function setMonacoEditorLanguage(editor: monaco.editor.IStandaloneCodeEditor, la
   if (container !== null) {
     if (typeof language !== "undefined") {
       const languageIcon = languageIcons[language] ?? '';
-      const languageTitle = languageIconTitles[language] ?? '';
       const icon = document.createElement('div');
       monaco.editor.setModelLanguage(editor.getModel()!, language);
       icon.id = iconId;
       // Only add in the icon if one is available
       if (languageIcon !== '') {
+        const languageTitle = language.charAt(0).toUpperCase() + language.slice(1) + ' ' + Craft.t('codeeditor', 'code is supported.');
         icon.classList.add('monaco-editor-codefield--icon');
-        icon.setAttribute('title', Craft.t('codeeditor', languageTitle));
+        icon.setAttribute('title', languageTitle);
         icon.setAttribute('aria-hidden', 'true');
         icon.innerHTML = languageIcon;
       }
