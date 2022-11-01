@@ -6,6 +6,8 @@ type SetMonacoEditorThemeFn = (editor: import('monaco-editor/esm/vs/editor/edito
 
 interface CodeEditorOptions {
   singleLineEditor?: boolean,
+  wrapperClass?: string,
+  placeholderText?: string,
 
-  [key: string]: any;
+  [key: string]: unknown;
 }

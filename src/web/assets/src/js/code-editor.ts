@@ -42,13 +42,11 @@ import {defaultMonacoOptions} from "./default-monaco-options";
  *
  * @param {string} elementId - The id of the TextArea or Input element to replace with a Monaco editor
  * @param {string} fieldType - The field's passed in type, used for autocomplete caching
- * @param {string} wrapperClass - Classes that should be added to the field's wrapper <div>
  * @param {monaco.editor.IStandaloneEditorConstructionOptions} monacoOptions - Monaco editor options
  * @param {string} codeEditorOptions - JSON encoded string of arbitrary CodeEditorOptions for the field
  * @param {string} endpointUrl - The controller action endpoint for generating autocomplete items
- * @param {string} placeholderText - Placeholder text to use for the field
  */
-function makeMonacoEditor(elementId: string, fieldType: string, wrapperClass: string, monacoOptions: string, codeEditorOptions: string, endpointUrl: string, placeholderText = ''): monaco.editor.IStandaloneCodeEditor | undefined {
+function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: string, codeEditorOptions: string, endpointUrl: string): monaco.editor.IStandaloneCodeEditor | undefined {
   const textArea = <HTMLInputElement>document.getElementById(elementId);
   const container = document.createElement('div');
   const fieldOptions: CodeEditorOptions = JSON.parse(codeEditorOptions);
@@ -64,12 +62,14 @@ function makeMonacoEditor(elementId: string, fieldType: string, wrapperClass: st
   container.id = elementId + '-monaco-editor';
   container.classList.add('monaco-editor', 'relative', 'box-content', 'monaco-editor-codefield', 'h-full');
   // Apply any passed in classes to the wrapper div
+  const wrapperClass = fieldOptions.wrapperClass ?? '';
   if (wrapperClass !== '') {
     const cl = container.classList;
     const classArray = wrapperClass.trim().split(/\s+/);
     cl.add(...classArray);
   }
   // Handle the placeholder text (if any)
+  const placeholderText = fieldOptions.placeholderText ?? '';
   if (placeholderText !== '') {
     const placeholder = document.createElement('div');
     placeholder.id = elementId + '-monaco-editor-placeholder';
