@@ -1,4 +1,4 @@
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/quality-score.png?b=v1)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=develop) [![Code Coverage](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/coverage.png?b=v1)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=develop) [![Build Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/build.png?b=v1)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/build-status/develop) [![Code Intelligence Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/code-intelligence.svg?b=v1)](https://scrutinizer-ci.com/code-intelligence)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=develop) [![Code Coverage](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/coverage.png?b=develop)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=develop) [![Build Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/build.png?b=develop)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/build-status/develop) [![Code Intelligence Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/code-intelligence.svg?b=develop)](https://scrutinizer-ci.com/code-intelligence)
 
 # Code Editor for Craft CMS 3.x & 4.x
 
@@ -25,6 +25,8 @@ To install Code Editor, follow these steps:
 ## About Code Editor
 
 Code Editor provides a full-featured code editor with syntax highlighting via the powerful [Monaco Editor](https://microsoft.github.io/monaco-editor/) (the same editor that is the basis for VS Code).
+
+It also can handle hundreds of other code languages, such as JavaScript, TypeScript, CSS, Markdown, and a [whole lot more](https://microsoft.github.io/monaco-editor/).
 
 Code Editor provides full autocompletion for [Twig](https://twig.symfony.com/doc/3.x/) filters/functions/tags, and the full [Craft CMS](https://craftcms.com/docs/4.x/) API, including installed plugins:
 
