@@ -1,6 +1,15 @@
-{% macro includeJs(fieldId, fieldType = "CodeEditor", wrapperClass = "", monacoOptions = {}, codeEditorOptions = {}, placeholderText = '') %}
+{% macro includeJs(fieldId, fieldType = "CodeEditor", monacoOptions = {}, codeEditorOptions = {}) %}
+    {% set codeEditorOptions =  {
+        singleLineEditor: false,
+        wrapperClass: '',
+        placeholderText: '',
+        displayLanguageIcon: true,
+    } | merge(codeEditorOptions) %}
+    {% set monacoOptions =  {
+        ariaLabel: 'Code Editor field.'|t('codeeditor'),
+    } | merge(monacoOptions) %}
     {% set monacoOptions = monacoOptions|merge({
-        ariaLabel: (monacoOptions.ariaLabel ?? '' ~ 'Twig code is supported.'|t('codeeditor'))|trim,
+        ariaLabel: (monacoOptions.ariaLabel ?? '' ~ 'Code Editor field.'|t('codeeditor'))|trim,
     }) %}
     {# @var \craft\web\AssetBundle bundle #}
     {% set bundle = view.registerAssetBundle("nystudio107\\codeeditor\\assetbundles\\codeeditor\\CodeEditorAsset") %}
@@ -14,46 +23,48 @@
         window.codeEditorBaseAssetsUrl = "{{ bundle.baseUrl }}/";
     {% endjs %}
     {% js %}
-        makeMonacoEditor("{{ (fieldId)|namespaceInputId }}", "{{ fieldType }}", "{{ wrapperClass }}", '{{ monacoOptions | json_encode | e('js') }}', '{{ codeEditorOptions | json_encode | e('js') }}', "{{ alias('@codeEditorEndpointUrl') }}", "{{ placeholderText }}");
+        makeMonacoEditor("{{ (fieldId)|namespaceInputId }}", "{{ fieldType }}", '{{ monacoOptions | json_encode | e('js') }}', '{{ codeEditorOptions | json_encode | e('js') }}', "{{ alias('@codeEditorEndpointUrl') }}");
     {% endjs %}
 {% endmacro %}
 
-{% macro textareaField(config, fieldType = "CodeEditor", wrapperClass = "", monacoOptions = {}, codeEditorOptions = {}) %}
+{% macro textareaField(config, fieldType = "CodeEditor", monacoOptions = {}, codeEditorOptions = {}) %}
     {% import "_includes/forms" as forms %}
     {% set config = config|merge({id: config.id ?? "code-editor#{random()}"}) %}
     {{ forms.textareaField(config) }}
     {% set codeEditorOptions =  {
-        singleLineEditor: false,
+        placeholderText: config.placeholder ?? '',
     } | merge(codeEditorOptions) %}
-    {{ _self.includeJs(config.id, fieldType, wrapperClass, monacoOptions, codeEditorOptions, config.placeholder ?? '') }}
+    {{ _self.includeJs(config.id, fieldType, monacoOptions, codeEditorOptions) }}
 {% endmacro %}
 
-{% macro textarea(config, fieldType = "CodeEditor", wrapperClass = "", monacoOptions = {}, codeEditorOptions = {}) %}
+{% macro textarea(config, fieldType = "CodeEditor", monacoOptions = {}, codeEditorOptions = {}) %}
     {% import "_includes/forms" as forms %}
     {% set config = config|merge({id: config.id ?? "code-editor#{random()}"}) %}
     {{ forms.textarea(config) }}
     {% set codeEditorOptions =  {
-        singleLineEditor: false,
+        placeholderText: config.placeholder ?? '',
     } | merge(codeEditorOptions) %}
-    {{ _self.includeJs(config.id, fieldType, wrapperClass, monacoOptions, codeEditorOptions, config.placeholder ?? '') }}
+    {{ _self.includeJs(config.id, fieldType, monacoOptions, codeEditorOptions) }}
 {% endmacro %}
 
-{% macro textField(config, fieldType = "CodeEditor", wrapperClass = "", monacoOptions = {}, codeEditorOptions = {}) %}
+{% macro textField(config, fieldType = "CodeEditor", monacoOptions = {}, codeEditorOptions = {}) %}
     {% import "_includes/forms" as forms %}
     {% set config = config|merge({id: config.id ?? "code-editor#{random()}"}) %}
     {{ forms.textField(config) }}
     {% set codeEditorOptions =  {
         singleLineEditor: true,
+        placeholderText: config.placeholder ?? '',
     } | merge(codeEditorOptions) %}
-    {{ _self.includeJs(config.id, fieldType, wrapperClass, monacoOptions, codeEditorOptions, config.placeholder ?? '') }}
+    {{ _self.includeJs(config.id, fieldType, monacoOptions, codeEditorOptions) }}
 {% endmacro %}
 
-{% macro text(config, fieldType = "CodeEditor", wrapperClass = "", monacoOptions = {}, codeEditorOptions = {}) %}
+{% macro text(config, fieldType = "CodeEditor", monacoOptions = {}, codeEditorOptions = {}) %}
     {% import "_includes/forms" as forms %}
     {% set config = config|merge({id: config.id ?? "code-editor#{random()}"}) %}
     {{ forms.text(config) }}
     {% set codeEditorOptions =  {
         singleLineEditor: true,
+        placeholderText: config.placeholder ?? '',
     } | merge(codeEditorOptions) %}
-    {{ _self.includeJs(config.id, fieldType, wrapperClass, monacoOptions, codeEditorOptions, config.placeholder ?? '') }}
+    {{ _self.includeJs(config.id, fieldType, monacoOptions, codeEditorOptions) }}
 {% endmacro %}
