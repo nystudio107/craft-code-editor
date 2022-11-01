@@ -20,6 +20,6 @@ return [
     'Twig Filter' => 'Twig Filter',
     'Twig Tag' => 'Twig Tag',
     'Custom Field Shorthand' => 'Custom Field Shorthand',
-    'Field Shorthand' => 'Field Shorthand',
-    'Twig code is supported.' => 'Twig code is supported.',
+    'Code Editor field.' => 'Code Editor field.',
+    'code is supported.' => 'code is supported.'
 ];

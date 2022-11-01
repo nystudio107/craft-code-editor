@@ -53,7 +53,7 @@ class CodeEditorAsset extends AssetBundle
 
         if ($view instanceof View) {
             $view->registerTranslations('codeeditor', [
-                'Twig code is supported.'
+                'code is supported.',
             ]);
         }
     }
