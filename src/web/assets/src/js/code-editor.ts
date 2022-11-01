@@ -68,6 +68,13 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
     const classArray = wrapperClass.trim().split(/\s+/);
     cl.add(...classArray);
   }
+  // Create an empty div for the icon
+  const displayLanguageIcon = fieldOptions.displayLanguageIcon ?? true;
+  if (displayLanguageIcon) {
+    const icon = document.createElement('div');
+    icon.id = elementId + '-monaco-language-icon';
+    container.appendChild(icon);
+  }
   // Handle the placeholder text (if any)
   const placeholderText = fieldOptions.placeholderText ?? '';
   if (placeholderText !== '') {
@@ -270,12 +277,10 @@ function setMonacoEditorLanguage(editor: monaco.editor.IStandaloneCodeEditor, la
         icon.setAttribute('aria-hidden', 'true');
         icon.innerHTML = languageIcon;
       }
-      // Replace the icon if it exists, otherwise create a new element
+      // Replace the icon div
       const currentIcon = container.querySelector('#' + iconId);
       if (currentIcon) {
         container.replaceChild(icon, currentIcon);
-      } else {
-        container.appendChild(icon);
       }
     }
   }

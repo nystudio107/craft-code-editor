@@ -8,6 +8,7 @@ interface CodeEditorOptions {
   singleLineEditor?: boolean,
   wrapperClass?: string,
   placeholderText?: string,
+  displayLanguageIcon?: boolean,
 
   [key: string]: unknown;
 }
