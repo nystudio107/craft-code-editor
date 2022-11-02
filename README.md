@@ -1,4 +1,4 @@
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/quality-score.png?b=v1)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=develop) [![Code Coverage](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/coverage.png?b=v1)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=develop) [![Build Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/build.png?b=v1)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/build-status/develop) [![Code Intelligence Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/code-intelligence.svg?b=v1)](https://scrutinizer-ci.com/code-intelligence)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=develop) [![Code Coverage](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/coverage.png?b=develop)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=develop) [![Build Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/build.png?b=develop)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/build-status/develop) [![Code Intelligence Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/code-intelligence.svg?b=develop)](https://scrutinizer-ci.com/code-intelligence)
 
 # Code Editor for Craft CMS 3.x & 4.x
 
@@ -26,6 +26,8 @@ To install Code Editor, follow these steps:
 
 Code Editor provides a full-featured code editor with syntax highlighting via the powerful [Monaco Editor](https://microsoft.github.io/monaco-editor/) (the same editor that is the basis for VS Code).
 
+It also can handle hundreds of other code languages, such as [JavaScript](https://github.com/doublesecretagency/craft-cpjs/pull/6), TypeScript, [CSS](https://github.com/doublesecretagency/craft-cpcss/pull/20), Markdown, and a [whole lot more](https://microsoft.github.io/monaco-editor/).
+
 Code Editor provides full autocompletion for [Twig](https://twig.symfony.com/doc/3.x/) filters/functions/tags, and the full [Craft CMS](https://craftcms.com/docs/4.x/) API, including installed plugins:
 
 ![Autocomplete](./resources/code-editor-autocomplete.png)
@@ -44,7 +46,7 @@ Once you've added the `nystudio107/craft-code-editor` package to your plugin, mo
 
 Code Editor is not a Craft CMS plugin, rather a package to be utilized by a plugin, module, or project.
 
-It can be very easy to add to an existing project, as you can see from the [Preparse field pull request](https://github.com/besteadfast/craft-preparse-field/pull/81/files) that adds it the [Preparse plugin](https://github.com/besteadfast/craft-preparse-field).
+It can be very easy to add to an existing project, as you can see from the [Preparse field pull request](https://github.com/besteadfast/craft-preparse-field/pull/87) that adds it the [Preparse plugin](https://github.com/besteadfast/craft-preparse-field).
 
 ### In the Craft CP
 
@@ -118,7 +120,9 @@ Regardless of the macro used, an Asset Bundle containing the necessary CSS & Jav
 
 ### In Frontend Templates
 
-By default, Code Editor will not work in frontend templates, unless you specifically enable it.
+Code Editor works in frontend templates, for every language except `twig`.
+
+If you plan to use `twig` as the language for Code Editor in your frontend templates, you'll need to specifically enable it.
 
 Do so by copying the `config.php` file to the Craft CMS `config/` directory, renaming the file to `codeeditor.php` in the process, then set the `allowFrontendAccess` setting to `true`:
 
@@ -183,9 +187,9 @@ e.g.:
 
 #### `editorOptions`
 
-**`editorOptions`** - an optional 4th parameter. This is an [EditorOption](https://microsoft.github.io/monaco-editor/api/enums/monaco.editor.EditorOption.html) passed in to configure the Monaco editor. By default, this is an empty object.
+**`editorOptions`** - an optional 4th parameter. This is an [EditorOption](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.IEditorOptions.html) passed in to configure the Monaco editor. By default, this is an empty object.
 
-You would commonly use `editorOptions` to specify the `language` to be used for the Code Editor, or the `theme`, but you can override any [EditorOption](https://microsoft.github.io/monaco-editor/api/enums/monaco.editor.EditorOption.html) you like.
+You would commonly use `editorOptions` to specify the `language` to be used for the Code Editor, or the `theme`, but you can override any [EditorOption](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.IEditorOptions.html) you like.
 
 e.g.:
 

@@ -265,12 +265,12 @@ function setMonacoEditorLanguage(editor: monaco.editor.IStandaloneCodeEditor, la
   const container = document.querySelector('#' + containerId);
   if (container !== null) {
     if (typeof language !== "undefined") {
-      const languageIcon = languageIcons[language] ?? '';
+      const languageIcon = languageIcons[language] ?? languageIcons['default'] ?? null;
       const icon = document.createElement('div');
       monaco.editor.setModelLanguage(editor.getModel()!, language);
       icon.id = iconId;
       // Only add in the icon if one is available
-      if (languageIcon !== '') {
+      if (languageIcon !== null) {
         const languageTitle = language.charAt(0).toUpperCase() + language.slice(1) + ' ' + Craft.t('codeeditor', 'code is supported.');
         icon.classList.add('monaco-editor-codefield--icon');
         icon.setAttribute('title', languageTitle);
@@ -303,4 +303,3 @@ window.setMonacoEditorLanguage = setMonacoEditorLanguage;
 window.setMonacoEditorTheme = setMonacoEditorTheme;
 
 export {makeMonacoEditor, setMonacoEditorLanguage, setMonacoEditorTheme};
-
