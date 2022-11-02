@@ -303,4 +303,3 @@ window.setMonacoEditorLanguage = setMonacoEditorLanguage;
 window.setMonacoEditorTheme = setMonacoEditorTheme;
 
 export {makeMonacoEditor, setMonacoEditorLanguage, setMonacoEditorTheme};
-
