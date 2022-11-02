@@ -187,9 +187,9 @@ e.g.:
 
 #### `editorOptions`
 
-**`editorOptions`** - an optional 4th parameter. This is an [EditorOption](https://microsoft.github.io/monaco-editor/api/enums/monaco.editor.EditorOption.html) passed in to configure the Monaco editor. By default, this is an empty object.
+**`editorOptions`** - an optional 4th parameter. This is an [EditorOption](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.IEditorOptions.html) passed in to configure the Monaco editor. By default, this is an empty object.
 
-You would commonly use `editorOptions` to specify the `language` to be used for the Code Editor, or the `theme`, but you can override any [EditorOption](https://microsoft.github.io/monaco-editor/api/enums/monaco.editor.EditorOption.html) you like.
+You would commonly use `editorOptions` to specify the `language` to be used for the Code Editor, or the `theme`, but you can override any [EditorOption](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.IEditorOptions.html) you like.
 
 e.g.:
 

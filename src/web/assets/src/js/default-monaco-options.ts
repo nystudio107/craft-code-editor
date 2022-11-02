@@ -1,5 +1,5 @@
 // The default EditorOptions for the Monaco editor instance
-// ref: https://microsoft.github.io/monaco-editor/api/enums/monaco.editor.EditorOption.html
+// ref: https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.IEditorOptions.html
 import * as monaco from "monaco-editor";
 
 export const defaultMonacoOptions: monaco.editor.IStandaloneEditorConstructionOptions = {
