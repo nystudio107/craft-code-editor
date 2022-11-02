@@ -120,7 +120,9 @@ Regardless of the macro used, an Asset Bundle containing the necessary CSS & Jav
 
 ### In Frontend Templates
 
-By default, Code Editor will not work in frontend templates, unless you specifically enable it.
+Code Editor works in frontend templates, for every language except `twig`.
+
+If you plan to use `twig` as the language for Code Editor in your frontend templates, you'll need to specifically enable it.
 
 Do so by copying the `config.php` file to the Craft CMS `config/` directory, renaming the file to `codeeditor.php` in the process, then set the `allowFrontendAccess` setting to `true`:
 
