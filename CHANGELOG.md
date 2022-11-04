@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.2 - UNRELEASED
+### Added
+* Added support for `monacoOptions.theme` set to `auto` automatically setting the theme to match the browser's dark mode setting
+
 ## 1.0.1 - 2022.11.02
 ### Added
 * Added a JSON icon
