@@ -293,7 +293,11 @@ function setMonacoEditorLanguage(editor: monaco.editor.IStandaloneCodeEditor, la
  * @param {string | undefined} theme - the editor theme
  */
 function setMonacoEditorTheme(editor: monaco.editor.IStandaloneCodeEditor, theme: string | undefined): void {
-  const editorTheme = theme ?? 'vs';
+  let editorTheme = theme ?? 'vs';
+  if (editorTheme === 'auto') {
+    const mediaQueryObj = window.matchMedia('(prefers-color-scheme: dark)');
+    editorTheme = mediaQueryObj.matches ? 'vs-dark' : 'vs';
+  }
   editor.updateOptions({theme: editorTheme});
 }
 
