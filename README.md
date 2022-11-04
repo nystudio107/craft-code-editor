@@ -120,9 +120,7 @@ Regardless of the macro used, an Asset Bundle containing the necessary CSS & Jav
 
 ### In Frontend Templates
 
-Code Editor works in frontend templates, for every language except `twig`.
-
-If you plan to use `twig` as the language for Code Editor in your frontend templates, you'll need to specifically enable it.
+Code Editor also works in frontend templates, but you'll need to specifically enable it.
 
 Do so by copying the `config.php` file to the Craft CMS `config/` directory, renaming the file to `codeeditor.php` in the process, then set the `allowFrontendAccess` setting to `true`:
 
@@ -153,7 +151,15 @@ Create your own `<textarea>` element and include the necessary JavaScript, passi
 {{ codeEditor.includeJs("myCodeEditor") }}
 ```
 
-Enabling the `allowFrontendAccess` setting allows access to the `codeeditor/autocomplete/index` endpoint, and add the `code-editor/templates` directory to the template roots.
+Enabling the `allowFrontendAccess` setting allows access to the `codeeditor/autocomplete/index` endpoint, and add the `codeeditor/templates` directory to the template roots.
+
+The following `monacoOptions` allow you to make the field read-only (though the user can still interact with the code):
+```json
+{
+    "domReadOnly": true,
+    "readOnly": true
+}
+```
 
 ### Additional Options
 
