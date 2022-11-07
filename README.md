@@ -40,6 +40,8 @@ You can also add your own custom Autocompletes, and customize the behavior of th
 
 Code Editor also provides a [Yii2 Validator](https://www.yiiframework.com/doc/guide/2.0/en/tutorial-core-validators) for Twig templates and object templates.
 
+If instead you need a Craft CMS field, use the [Code Field plugin](https://plugins.craftcms.com/codefield), which provides Code Editor wrapped in a field type.
+
 ## Using Code Editor
 
 Once you've added the `nystudio107/craft-code-editor` package to your plugin, module, or project, no further setup is needed. This is because it operates as an auto-bootstrapping Yii2 Module.
