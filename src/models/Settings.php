@@ -32,7 +32,12 @@ class Settings extends Model
     public $allowFrontendAccess = false;
 
     /**
-     * @var string[] The default autcompletes to use for the default `CodeEditor` field type
+     * @var bool Whether to allow frontend templates access to the `codeeditor/codeEditor.twig` Twig template
+     */
+    public $allowTemplateAccess = true;
+
+    /**
+     * @var string[] The default autocompletes to use for the default `CodeEditor` field type
      */
     public $defaultCodeEditorAutocompletes = [
         CraftApiAutocomplete::class,
@@ -49,7 +54,7 @@ class Settings extends Model
     public function defineRules(): array
     {
         return [
-            ['allowFrontendAccess', 'boolean'],
+            [['allowFrontendAccess', 'allowTemplateAccess'], 'boolean'],
             ['defaultCodeFieldAutocompletes', ArrayValidator::class],
         ];
     }
