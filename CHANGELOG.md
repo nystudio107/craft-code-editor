@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## 1.0.3 - UNRELEASED
+### Added
+* Added an `allowTemplateAccess` setting to `config.php` to separate frontend template access from frontend autocomplete controller access
+
 ### Changed
 * Use `--focus-ring` Craft CMS CSS variable for a11y styles
 

@@ -122,7 +122,9 @@ Regardless of the macro used, an Asset Bundle containing the necessary CSS & Jav
 
 ### In Frontend Templates
 
-Code Editor also works in frontend templates, but you'll need to specifically enable it.
+Code Editor also works in frontend templates, but you can disable it via the `allowTemplateAccess` config setting. This is enabled by default.
+
+There is also a `allowFrontendAccess` which is disabled by default. This allows access to the `codeeditor/autocomplete/index` endpoint for Twig & Craft API autocompletes. This is disabled by default, so if you want these completions on the frontend, you'll need to specifically enable it.
 
 Do so by copying the `config.php` file to the Craft CMS `config/` directory, renaming the file to `codeeditor.php` in the process, then set the `allowFrontendAccess` setting to `true`:
 
@@ -130,7 +132,9 @@ Do so by copying the `config.php` file to the Craft CMS `config/` directory, ren
 return [
     // Whether to allow anonymous access be allowed to the codeeditor/autocomplete/index endpoint
     'allowFrontendAccess' => true,
-    // The default autocompletes to use for the default `Code Editor` field type
+    // Whether to allow frontend templates access to the `codeeditor/codeEditor.twig` Twig template
+    'allowTemplateAccess' => true,
+    // The default autocompletes to use for the default `CodeEditor` field type
     'defaultCodeEditorAutocompletes' => [
         CraftApiAutocomplete::class,
         TwigLanguageAutocomplete::class,
