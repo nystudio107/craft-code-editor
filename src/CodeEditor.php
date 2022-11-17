@@ -141,7 +141,7 @@ class CodeEditor extends Module implements BootstrapInterface
             }
         });
         // Base Site templates directory
-        if (self::$settings->allowFrontendAccess) {
+        if (self::$settings->allowTemplateAccess) {
             Event::on(View::class, View::EVENT_REGISTER_SITE_TEMPLATE_ROOTS, function (RegisterTemplateRootsEvent $e) {
                 if (is_dir($baseDir = $this->getBasePath() . DIRECTORY_SEPARATOR . 'templates')) {
                     $e->roots[$this->id] = $baseDir;
