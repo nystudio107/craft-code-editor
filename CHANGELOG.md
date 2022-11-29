@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.4 - 2022.11.29
+### Changed
+* Switched to doing tab handling for single line editors via `TabFocus` rather than our own custom tab handler ([ref](https://stackoverflow.com/questions/74202202/how-to-programatically-set-tabfocusmode-in-monaco-editor/74598917#74598917))
+* Change the opacity of the placeholder text to make it lighter in appearance
+
 ## 1.0.3 - 2022.11.16
 ### Added
 * Added an `allowTemplateAccess` setting to `config.php` to separate frontend template access from frontend autocomplete controller access
