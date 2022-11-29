@@ -2,7 +2,7 @@
  * @project        code-editor
  * @name           vendors.js
  * @author         Andrew Welch
- * @build          Sun Nov 13 2022 18:51:09 GMT+0000 (Coordinated Universal Time)
+ * @build          Tue Nov 29 2022 20:02:48 GMT+0000 (Coordinated Universal Time)
  * @copyright      Copyright (c) 2022 ©2022 nystudio107.com
  *
  */
