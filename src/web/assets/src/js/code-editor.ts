@@ -33,6 +33,7 @@ if (typeof __webpack_public_path__ === 'undefined' || __webpack_public_path__ ==
 }
 
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import {TabFocus} from 'monaco-editor/esm/vs/editor/browser/config/tabFocus.js';
 import {getCompletionItemsFromEndpoint} from './twig-autocomplete';
 import {languageIcons} from './language-icons'
 import {defaultMonacoOptions} from "./default-monaco-options";
@@ -114,12 +115,9 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
       // Handle typing the Enter key
       editor.addCommand(monaco.KeyCode.Enter, () => {
       }, '!suggestWidgetVisible');
-      // Handle typing the Tab key
-      editor.addCommand(monaco.KeyCode.Tab, () => {
-        focusNextElement();
-      });
-      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Tab, () => {
-        focusPrevElement();
+      // Enable TabeFocusMode ref: https://stackoverflow.com/questions/74202202/how-to-programatically-set-tabfocusmode-in-monaco-editor/74598917
+      editor.onDidFocusEditorWidget(() => {
+        TabFocus.setTabFocusMode(true);
       });
       // Handle Paste
       editor.onDidPaste(() => {
@@ -166,60 +164,6 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
     editor.onDidFocusEditorWidget(() => {
       hidePlaceholder('#' + placeholderId);
     });
-  }
-
-  /**
-   * Move the focus to the next element
-   */
-  function focusNextElement(): void {
-    const focusable = getFocusableElements();
-    if (document.activeElement instanceof HTMLElement) {
-      const index = focusable.indexOf(document.activeElement);
-      if (index > -1) {
-        const nextElement = focusable[index + 1] || focusable[0];
-        nextElement.focus();
-      }
-    }
-  }
-
-  /**
-   * Move the focus to the previous element
-   */
-  function focusPrevElement(): void {
-    const focusable = getFocusableElements();
-    if (document.activeElement instanceof HTMLElement) {
-      const index = focusable.indexOf(document.activeElement);
-      if (index > -1) {
-        const prevElement = focusable[index - 1] || focusable[focusable.length];
-        prevElement.focus();
-      }
-    }
-  }
-
-  /**
-   * Get the focusable elements in the current form
-   *
-   * @returns {Array<HTMLElement>} - An array of HTMLElements that can be focusable
-   */
-  function getFocusableElements(): Array<HTMLElement> {
-    let focusable: Array<HTMLElement> = [];
-    // add all elements we want to include in our selection
-    const focusableElements = 'a:not([disabled]), button:not([disabled]), select:not([disabled]), input[type=text]:not([disabled]), [tabindex]:not([disabled]):not([tabindex="-1"])';
-    if (document.activeElement instanceof HTMLElement) {
-      const activeElement: HTMLFormElement = <HTMLFormElement>document.activeElement;
-      if (activeElement && activeElement.form) {
-        focusable = Array.prototype.filter.call(activeElement.form.querySelectorAll(focusableElements),
-          function (element) {
-            if (element instanceof HTMLElement) {
-              //check for visibility while always include the current activeElement
-              return element.offsetWidth > 0 || element.offsetHeight > 0 || element === document.activeElement
-            }
-            return false;
-          });
-      }
-    }
-
-    return focusable;
   }
 
   /**
