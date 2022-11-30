@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.5 - 2022.11.30
+### Changed
+* Set the default theme before the editor is instantiated, as an optimization
+
 ## 1.0.4 - 2022.11.29
 ### Changed
 * Switched to doing tab handling for single line editors via `TabFocus` rather than our own custom tab handler ([ref](https://stackoverflow.com/questions/74202202/how-to-programatically-set-tabfocusmode-in-monaco-editor/74598917#74598917))
