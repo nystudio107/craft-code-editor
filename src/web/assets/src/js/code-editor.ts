@@ -48,7 +48,7 @@ import {defaultMonacoOptions} from "./default-monaco-options";
  * @param {string} endpointUrl - The controller action endpoint for generating autocomplete items
  */
 function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: string, codeEditorOptions: string, endpointUrl: string): monaco.editor.IStandaloneCodeEditor | undefined {
-  const textArea = <HTMLInputElement>document.getElementById(elementId);
+  const textArea = <HTMLInputElement | null>document.getElementById(elementId);
   const container = document.createElement('div');
   const fieldOptions: CodeEditorOptions = JSON.parse(codeEditorOptions);
   const placeholderId = elementId + '-monaco-editor-placeholder';
@@ -58,6 +58,8 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
   }
   // Monaco editor defaults, coalesced together
   const monacoEditorOptions: monaco.editor.IStandaloneEditorConstructionOptions = JSON.parse(monacoOptions);
+  // Set the editor theme here, so we don't re-apply it later
+  monacoEditorOptions.theme = getEditorTheme(monacoEditorOptions?.theme);
   const options: monaco.editor.IStandaloneEditorConstructionOptions = {...defaultMonacoOptions, ...monacoEditorOptions, ...{value: textArea.value}}
   // Make a sibling div for the Monaco editor to live in
   container.id = elementId + '-monaco-editor';
@@ -100,8 +102,6 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
   });
   // Add the language icon (if any)
   setMonacoEditorLanguage(editor, options.language, elementId);
-  // Set the editor theme
-  setMonacoEditorTheme(editor, options.theme);
   // ref: https://github.com/vikyd/vue-monaco-singleline/blob/master/src/monaco-singleline.vue#L150
   if ('singleLineEditor' in fieldOptions && fieldOptions.singleLineEditor) {
     const textModel: monaco.editor.ITextModel | null = editor.getModel();
@@ -115,7 +115,7 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
       // Handle typing the Enter key
       editor.addCommand(monaco.KeyCode.Enter, () => {
       }, '!suggestWidgetVisible');
-      // Enable TabeFocusMode ref: https://stackoverflow.com/questions/74202202/how-to-programatically-set-tabfocusmode-in-monaco-editor/74598917
+      // Enable TabFocusMode ref: https://stackoverflow.com/questions/74202202/how-to-programatically-set-tabfocusmode-in-monaco-editor/74598917
       editor.onDidFocusEditorWidget(() => {
         TabFocus.setTabFocusMode(true);
       });
@@ -174,7 +174,7 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
    */
   function showPlaceholder(selector: string, value: string): void {
     if (value === "") {
-      const elem = <HTMLElement>document.querySelector(selector);
+      const elem = <HTMLElement | null>document.querySelector(selector);
       if (elem !== null) {
         elem.style.display = "initial";
       }
@@ -187,7 +187,7 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
    * @param {string} selector - The selector for the placeholder element
    */
   function hidePlaceholder(selector: string): void {
-    const elem = <HTMLElement>document.querySelector(selector);
+    const elem = <HTMLElement | null>document.querySelector(selector);
     if (elem !== null) {
       elem.style.display = "none";
     }
@@ -206,7 +206,7 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
 function setMonacoEditorLanguage(editor: monaco.editor.IStandaloneCodeEditor, language: string | undefined, elementId: string): void {
   const containerId = elementId + '-monaco-editor';
   const iconId = elementId + '-monaco-language-icon';
-  const container = document.querySelector('#' + containerId);
+  const container = <Element | null>document.querySelector('#' + containerId);
   if (container !== null) {
     if (typeof language !== "undefined") {
       const languageIcon = languageIcons[language] ?? languageIcons['default'] ?? null;
@@ -231,18 +231,33 @@ function setMonacoEditorLanguage(editor: monaco.editor.IStandaloneCodeEditor, la
 }
 
 /**
+ * Return the editor theme to use, accounting for undefined and 'auto' as potential parameters
+ *
+ * @param {string | undefined} theme - the editor theme
+ */
+function getEditorTheme(theme: string | undefined): string {
+  let editorTheme = theme ?? 'vs';
+  if (editorTheme === 'auto') {
+    const mediaQueryObj = window.matchMedia('(prefers-color-scheme: dark)');
+    editorTheme = mediaQueryObj.matches ? 'vs-dark' : 'vs';
+  }
+
+  return editorTheme;
+}
+
+/**
  * Set the theme for the Monaco editor instance
  *
  * @param {monaco.editor.IStandaloneCodeEditor} editor - the Monaco editor instance
  * @param {string | undefined} theme - the editor theme
  */
 function setMonacoEditorTheme(editor: monaco.editor.IStandaloneCodeEditor, theme: string | undefined): void {
-  let editorTheme = theme ?? 'vs';
-  if (editorTheme === 'auto') {
-    const mediaQueryObj = window.matchMedia('(prefers-color-scheme: dark)');
-    editorTheme = mediaQueryObj.matches ? 'vs-dark' : 'vs';
+  const editorTheme = getEditorTheme(theme);
+  // @ts-ignore
+  const currentTheme = editor._themeService?._theme?.themeName ?? null;
+  if (currentTheme !== editorTheme) {
+    editor.updateOptions({theme: editorTheme});
   }
-  editor.updateOptions({theme: editorTheme});
 }
 
 // Make the functions globally available
