@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.6 - 2022.12.06
+### Fixed
+* Remove reference to `Craft.` so the JavaScript will work on the frontend
+
 ## 1.0.5 - 2022.11.30
 ### Changed
 * Set the default theme before the editor is instantiated, as an optimization
