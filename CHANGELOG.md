@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.7 - 2022.12.15
+### Changed
+* Allow scrollbars for text editors instances that are not single line editors
+* Set the minimum editor size to the `textarea`'s rows, so you have control over the minimum height of the editor
+* Set the maximum number of rows in the editor to 50, after which scrollbars appear
+
 ## 1.0.6 - 2022.12.06
 ### Fixed
 * Remove reference to `Craft.` so the JavaScript will work on the frontend

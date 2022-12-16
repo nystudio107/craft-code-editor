@@ -7,6 +7,14 @@
  * @copyright Copyright (c) 2022 nystudio107
  */
 
+import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
+import {editor} from "monaco-editor/esm/vs/editor/editor.api";
+import {TabFocus} from 'monaco-editor/esm/vs/editor/browser/config/tabFocus.js';
+import {getCompletionItemsFromEndpoint} from './twig-autocomplete';
+import {languageIcons} from './language-icons'
+import {defaultMonacoOptions} from "./default-monaco-options";
+import EditorOption = editor.EditorOption;
+
 /**
  * @author    nystudio107
  * @package   CodeEditor
@@ -26,17 +34,13 @@ declare global {
   }
 }
 
+const MAX_EDITOR_ROWS = 50;
+
 // Set the __webpack_public_path__ dynamically, so we can work inside cpresources's hashed dir name
 // https://stackoverflow.com/questions/39879680/example-of-setting-webpack-public-path-at-runtime
 if (typeof __webpack_public_path__ === 'undefined' || __webpack_public_path__ === '') {
   __webpack_public_path__ = window.codeEditorBaseAssetsUrl;
 }
-
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-import {TabFocus} from 'monaco-editor/esm/vs/editor/browser/config/tabFocus.js';
-import {getCompletionItemsFromEndpoint} from './twig-autocomplete';
-import {languageIcons} from './language-icons'
-import {defaultMonacoOptions} from "./default-monaco-options";
 
 /**
  * Create a Monaco Editor instance
@@ -56,10 +60,20 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
   if (textArea === null || textArea.parentNode === null) {
     return;
   }
-  // Monaco editor defaults, coalesced together
+  // Monaco editor options passed in from the config
   const monacoEditorOptions: monaco.editor.IStandaloneEditorConstructionOptions = JSON.parse(monacoOptions);
+  // Set the scrollbar to hidden in defaultMonacoOptions if this is a single-line field
+  if ('singleLineEditor' in fieldOptions && fieldOptions.singleLineEditor) {
+    defaultMonacoOptions.scrollbar = {
+      vertical: 'hidden',
+      horizontal: 'auto',
+      alwaysConsumeMouseWheel: false,
+      handleMouseWheel: false,
+    };
+  }
   // Set the editor theme here, so we don't re-apply it later
   monacoEditorOptions.theme = getEditorTheme(monacoEditorOptions?.theme);
+  // Monaco editor defaults, coalesced together
   const options: monaco.editor.IStandaloneEditorConstructionOptions = {...defaultMonacoOptions, ...monacoEditorOptions, ...{value: textArea.value}}
   // Make a sibling div for the Monaco editor to live in
   container.id = elementId + '-monaco-editor';
@@ -143,7 +157,11 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
   let ignoreEvent = false;
   const updateHeight = () => {
     const width = editor.getLayoutInfo().width;
-    const contentHeight = Math.min(1000, editor.getContentHeight());
+    const lineHeight = editor.getOption(EditorOption.lineHeight);
+    let contentHeight = Math.min(lineHeight * MAX_EDITOR_ROWS, editor.getContentHeight());
+    if (textArea instanceof HTMLTextAreaElement) {
+      contentHeight = Math.max(textArea.rows * lineHeight, contentHeight)
+    }
     //container.style.width = `${width}px`;
     container.style.height = `${contentHeight}px`;
     try {
