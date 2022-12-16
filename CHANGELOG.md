@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.7 - UNRELEASED
+### Changed
+* Allow scrollbars for text editors instances that are not single line editors
+
 ## 1.0.6 - 2022.12.06
 ### Fixed
 * Remove reference to `Craft.` so the JavaScript will work on the frontend
