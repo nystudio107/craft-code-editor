@@ -19,10 +19,10 @@ export const defaultMonacoOptions: monaco.editor.IStandaloneEditorConstructionOp
   wordWrap: 'on',
   scrollBeyondLastLine: false,
   scrollbar: {
-    vertical: 'hidden',
+    vertical: 'auto',
     horizontal: 'auto',
     alwaysConsumeMouseWheel: false,
-    handleMouseWheel: false,
+    handleMouseWheel: true,
   },
   fontSize: 14,
   fontFamily: 'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace',
