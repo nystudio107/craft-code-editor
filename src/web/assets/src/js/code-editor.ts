@@ -71,6 +71,9 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
       handleMouseWheel: false,
     };
   }
+  // Create the model with a unique URI so individual instances can be targeted
+  const modelUri = monaco.Uri.parse('https://craft-code-editor.com/' + elementId);
+  defaultMonacoOptions.model = monaco.editor.createModel('', monacoEditorOptions.language ?? defaultMonacoOptions.language, modelUri);
   // Set the editor theme here, so we don't re-apply it later
   monacoEditorOptions.theme = getEditorTheme(monacoEditorOptions?.theme);
   // Monaco editor defaults, coalesced together
