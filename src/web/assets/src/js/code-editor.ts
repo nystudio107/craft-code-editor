@@ -73,11 +73,12 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
   }
   // Create the model with a unique URI so individual instances can be targeted
   const modelUri = monaco.Uri.parse('https://craft-code-editor.com/' + elementId);
-  defaultMonacoOptions.model = monaco.editor.createModel('', monacoEditorOptions.language ?? defaultMonacoOptions.language, modelUri);
+  const textModel = monaco.editor.createModel(textArea.value, monacoEditorOptions.language ?? defaultMonacoOptions.language, modelUri);
+  defaultMonacoOptions.model = textModel;
   // Set the editor theme here, so we don't re-apply it later
   monacoEditorOptions.theme = getEditorTheme(monacoEditorOptions?.theme);
   // Monaco editor defaults, coalesced together
-  const options: monaco.editor.IStandaloneEditorConstructionOptions = {...defaultMonacoOptions, ...monacoEditorOptions, ...{value: textArea.value}}
+  const options: monaco.editor.IStandaloneEditorConstructionOptions = {...defaultMonacoOptions, ...monacoEditorOptions}
   // Make a sibling div for the Monaco editor to live in
   container.id = elementId + '-monaco-editor';
   container.classList.add('monaco-editor', 'relative', 'box-content', 'monaco-editor-codefield', 'h-full');
@@ -121,7 +122,6 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
   setMonacoEditorLanguage(editor, options.language, elementId);
   // ref: https://github.com/vikyd/vue-monaco-singleline/blob/master/src/monaco-singleline.vue#L150
   if ('singleLineEditor' in fieldOptions && fieldOptions.singleLineEditor) {
-    const textModel: monaco.editor.ITextModel | null = editor.getModel();
     if (textModel !== null) {
       // Remove multiple spaces & tabs
       const text = textModel.getValue();
