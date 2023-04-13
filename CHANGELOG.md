@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## 1.0.8 - UNRELEASED
+## 1.0.8 - 2023.04.12
 ### Changed
 * Add a unique `modelUri` to each editor model
 
