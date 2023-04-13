@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.8 - 2023.04.12
+### Changed
+* Add a unique `modelUri` to each editor model
+
 ## 1.0.7 - 2022.12.15
 ### Changed
 * Allow scrollbars for text editors instances that are not single line editors
