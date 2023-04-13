@@ -437,6 +437,35 @@ public function defineRules()
 }
 ```
 
+## JSON Schema Autocompletes
+
+The Monaco editor that the Code Editor is based on [supports JSON Schema Autocompletes](https://stackoverflow.com/questions/57461050/setting-diagnostics-json-scheme-in-runtime) that let you define the schema for an JSON editor instance.
+
+You can play with an example of this in the [Monaco playground](https://microsoft.github.io/monaco-editor/playground.html?source=v0.37.1#example-extending-language-services-configure-json-defaults)
+
+Code Editor adds some support to make it a bit easier to do, here's an example from the Craft [Code Field plugin](https://github.com/nystudio107/craft-code-field) on one way to do it via a [Twig template](https://github.com/nystudio107/craft-code-field/blob/develop-v3/src/templates/_components/fields/Code_settings.twig#L162):
+
+```js
+{% js %}
+// Add schema definitions for this JSON editor field
+var jsonSchemaUri = 'https://craft-code-editor.com/{{ "monacoEditorOptions"|namespaceInputId }}';
+var jsonSchema = {
+  uri: jsonSchemaUri,
+  fileMatch: [jsonSchemaUri],
+  schema: {{ optionsSchema | raw }}
+}
+// configure the JSON language support with schemas and schema associations
+monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+  validate: true,
+  schemas: [jsonSchema]
+});
+{% endjs %}
+```
+
+...where the `optionsSchema` variable is [injected into the template](https://github.com/nystudio107/craft-code-field/blob/develop-v3/src/fields/Code.php#L161), and contains the contents of the [`IEditorOptionsSchema.json`](https://github.com/nystudio107/craft-code-field/blob/develop-v3/src/resources/IEditorOptionsSchema.json) file.
+
+You could alternatively grab this file via an XHR from an Asset Bundle, or just inline the schema definition directly.
+
 ## Code Editor Roadmap
 
 Some things to do, and ideas for potential features:
