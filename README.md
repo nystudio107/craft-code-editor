@@ -439,7 +439,7 @@ public function defineRules()
 
 ## JSON Schema Autocompletes
 
-The Monaco editor that the Code Editor is based on [supports JSON Schema Autocompletes](https://stackoverflow.com/questions/57461050/setting-diagnostics-json-scheme-in-runtime) that let you define the schema for an JSON editor instance.
+The Monaco editor that the Code Editor is based on supports [JSON Schema](https://json-schema.org/) for [JSON Autocompletes](https://stackoverflow.com/questions/57461050/setting-diagnostics-json-scheme-in-runtime) that let you define the schema for an JSON editor instance.
 
 You can play with an example of this in the [Monaco playground](https://microsoft.github.io/monaco-editor/playground.html?source=v0.37.1#example-extending-language-services-configure-json-defaults)
 
