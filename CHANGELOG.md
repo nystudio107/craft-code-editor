@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.9 - UNRELEASED
+### Changed
+* Updated assets build with the latest deps
+
 ## 1.0.8 - 2023.04.12
 ### Changed
 * Add a unique `modelUri` to each editor model
