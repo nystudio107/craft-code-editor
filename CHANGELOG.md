@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## 1.0.9 - UNRELEASED
+## 1.0.9 - 2023.04.16
 ### Changed
 * Updated assets build with the latest deps
 
