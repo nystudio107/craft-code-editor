@@ -72,8 +72,16 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
     };
   }
   // Create the model with a unique URI so individual instances can be targeted
-  const modelUri = monaco.Uri.parse('https://craft-code-editor.com/' + elementId);
-  const textModel = monaco.editor.createModel(textArea.value, monacoEditorOptions.language ?? defaultMonacoOptions.language, modelUri);
+  let modelUri = monaco.Uri.parse('https://craft-code-editor.com/' + elementId);
+  // Assign a default language
+  let monacoEditorLanguage = monacoEditorOptions.language ?? defaultMonacoOptions.language;
+  // If they are passing in the name of the file, use it for the modelUri, and set the language to undefined,
+  // so Monaco can auto-detect the language
+  if ('fileName' in fieldOptions && fieldOptions.fileName) {
+    modelUri = monaco.Uri.file(fieldOptions.fileName);
+    monacoEditorLanguage = undefined;
+  }
+  const textModel = monaco.editor.createModel(textArea.value, monacoEditorLanguage, modelUri);
   defaultMonacoOptions.model = textModel;
   // Set the editor theme here, so we don't re-apply it later
   monacoEditorOptions.theme = getEditorTheme(monacoEditorOptions?.theme);
