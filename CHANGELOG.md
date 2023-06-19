@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## 1.0.10 - Unreleased
+## 1.0.10 - 2023.06.19
 ### Changed
 * The default `lineNumbersMinChars` option value is no longer set to `0`.
 
