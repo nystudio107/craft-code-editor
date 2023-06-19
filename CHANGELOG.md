@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.10.0 - Unreleased
+### Changed
+* The default `lineNumbersMinChars` option value is no longer set to `0`.
+
 ## 1.0.9 - 2023.04.16
 ### Changed
 * Updated assets build with the latest deps
