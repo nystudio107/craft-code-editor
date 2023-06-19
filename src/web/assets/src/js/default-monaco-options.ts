@@ -13,7 +13,6 @@ export const defaultMonacoOptions: monaco.editor.IStandaloneEditorConstructionOp
   folding: false,
   // Undocumented see https://github.com/Microsoft/vscode/issues/30795#issuecomment-410998882
   lineDecorationsWidth: 0,
-  lineNumbersMinChars: 0,
   // Disable the current line highlight
   renderLineHighlight: 'none',
   wordWrap: 'on',
