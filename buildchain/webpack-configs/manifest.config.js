@@ -2,47 +2,48 @@
 // returns a webpack config object for the manifest plugin
 
 // webpack plugins
-const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
 
 // return a webpack config
 module.exports = (type = 'modern', settings) => {
-    // common config
-    const common = (filename) => ({
-        plugins: [
-            new WebpackManifestPlugin({
-                fileName: filename,
-                basePath: settings.basePath,
-                map: (file) => {
-                    file.name = file.name.replace(/(\.[a-f0-9]{32})(\..*)$/, '$2');
-                    return file;
-                },
-            }),
-        ],
-    });
-    // configs
-    const configs = {
-        // development configs
-        development: {
-            // legacy development config
-            legacy: {
-            },
-            // modern development config
-            modern: {
-                ...common('manifest.json'),
-            },
+  // common config
+  const common = (filename) => ({
+    plugins: [
+      new WebpackManifestPlugin({
+        fileName: filename,
+        basePath: settings.basePath,
+        map: (file) => {
+          file.name = file.name.replace(/(\.[a-f0-9]{32})(\..*)$/, '$2');
+          return file;
         },
-        // production configs
-        production: {
-            // legacy production config
-            legacy: {
-                ...common('manifest.json'),
-            },
-            // modern production config
-            modern: {
-                ...common('manifest.json'),
-            },
-        }
-    };
+      }),
+    ],
+  });
+  // configs
+  const configs = {
+    // development configs
+    development: {
+      // legacy development config
+      legacy: {
+        ...common('manifest.json'),
+      },
+      // modern development config
+      modern: {
+        ...common('manifest.json'),
+      },
+    },
+    // production configs
+    production: {
+      // legacy production config
+      legacy: {
+        ...common('manifest.json'),
+      },
+      // modern production config
+      modern: {
+        ...common('manifest.json'),
+      },
+    }
+  };
 
-    return configs[process.env.NODE_ENV][type];
+  return configs[process.env.NODE_ENV][type];
 }

@@ -12,88 +12,91 @@ const TailwindCss = require('tailwindcss');
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 module.exports = (type = 'modern', settings) => {
 // common config
-    const common = (loaders, postCssPlugins) => ({
-        module: {
-            rules: [
-                {
-                    test: /\.(pcss|css)$/,
-                    use: [
-                        ...loaders,
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                sourceMap: false,
-                                url: false,
-                                import: false,
-                            },
-                        },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                sourceMap: false,
-                                postcssOptions: {
-                                    path: path.resolve(__dirname),
-                                    plugins: [
-                                        ['postcss-import', {
-                                            path: ['./node_modules'],
-                                        }],
-                                        ['tailwindcss/nesting', {
-                                        }],
-                                        TailwindCss('./tailwind.config.js'),
-                                        ['postcss-mixins', {
-                                        }],
-                                        ['postcss-hexrgba', {
-                                        }],
-                                        ...postCssPlugins,
-                                    ],
-                                }
-                            }
-                        }
-                    ]
-                },
-            ],
-        },
-    });
-    // configs
-    const configs = {
-        // development configs
-        development: {
-            // legacy development config
-            legacy: {
+  const common = (loaders, postCssPlugins) => ({
+    module: {
+      rules: [
+        {
+          test: /\.(pcss|css)$/,
+          use: [
+            ...loaders,
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: false,
+                url: false,
+                import: false,
+              },
             },
-            // modern development config
-            modern: {
-                ...common([{
-                    loader: 'style-loader',
-                }], [
-                ]),
-            },
-        },
-        // production configs
-        production: {
-            // legacy production config
-            legacy: {
-                ...common(
-                    [
-                        MiniCssExtractPlugin.loader
-                    ],
-                    [
-                        ['autoprefixer', {
-                        }]
-                    ],
-                ),
-            },
-            // modern production config
-            modern: {
-                module: {
-                    rules: [{
-                        test: /\.(pcss|css)$/,
-                        loader: 'ignore-loader'
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: false,
+                postcssOptions: {
+                  path: path.resolve(__dirname),
+                  plugins: [
+                    ['postcss-import', {
+                      path: ['./node_modules'],
                     }],
-                },
-            },
-        }
-    };
+                    ['tailwindcss/nesting', {}],
+                    TailwindCss('./tailwind.config.js'),
+                    ['postcss-mixins', {}],
+                    ['postcss-hexrgba', {}],
+                    ...postCssPlugins,
+                  ],
+                }
+              }
+            }
+          ]
+        },
+      ],
+    },
+  });
+  // configs
+  const configs = {
+    // development configs
+    development: {
+      // legacy development config
+      legacy: {
+        ...common(
+          [
+            MiniCssExtractPlugin.loader
+          ],
+          [
+            ['autoprefixer', {}]
+          ],
+        ),
+      },
+      // modern development config
+      modern: {
+        ...common([{
+          loader: 'style-loader',
+        }], []),
+      },
+    },
+    // production configs
+    production: {
+      // legacy production config
+      legacy: {
+        ...common(
+          [
+            MiniCssExtractPlugin.loader
+          ],
+          [
+            ['autoprefixer', {}]
+          ],
+        ),
+      },
+      // modern production config
+      modern: {
+        module: {
+          rules: [{
+            test: /\.(pcss|css)$/,
+            loader: 'ignore-loader'
+          }],
+        },
+      },
+    }
+  };
 
-    return configs[process.env.NODE_ENV][type];
+  return configs[process.env.NODE_ENV][type];
 }

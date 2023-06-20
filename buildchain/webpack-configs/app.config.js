@@ -33,7 +33,9 @@ module.exports = (type = 'modern', settings) => {
     // development configs
     development: {
       // legacy development config
-      legacy: {},
+      legacy: {
+        ...common(),
+      },
       // modern development config
       modern: {
         ...common(),

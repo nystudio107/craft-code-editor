@@ -127,6 +127,7 @@
   "scripts": {
     "build": "webpack --config webpack.prod.js --progress",
     "check-types": "tsc",
+    "dev": "webpack watch --mode development --config webpack.dev.js --progress",
     "lint": "tsc --noEmit && eslint '../../src/**/*.{js,ts}' --fix"
   },
   "version": "1.0.0"
