@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## 1.0.11 - UNRELEASED
+## 1.0.11 - 2023.08.06
 ### Added
 * Add a `CodeEditorOptions.fileName` so that the name of the file to be edited can be passed down, and used for the `modelUri` so Monaco can auto-detect the correct editor to use based on the file extension
 
