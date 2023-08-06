@@ -9,6 +9,7 @@ interface CodeEditorOptions {
   wrapperClass?: string,
   placeholderText?: string,
   displayLanguageIcon?: boolean,
+  fileName?: string,
 
   [key: string]: unknown;
 }

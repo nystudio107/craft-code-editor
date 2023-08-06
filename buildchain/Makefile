@@ -18,6 +18,10 @@ build: docker install
 clean:
 	rm -rf node_modules/
 	rm -f package-lock.json
+# Start webpack in watch mode for local development
+dev: docker install
+	${DOCKERRUN} \
+		run dev
 # Build the Docker image from the Dockerfile
 docker:
 	docker build \
