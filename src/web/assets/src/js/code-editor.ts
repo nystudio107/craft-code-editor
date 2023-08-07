@@ -185,8 +185,15 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
       ignoreEvent = false;
     }
   };
-  editor.onDidContentSizeChange(updateHeight);
-  updateHeight();
+  // Handle fixed height editors
+  let dynamicHeight = true;
+  if ('fixedHeightEditor' in fieldOptions && fieldOptions.fixedHeightEditor) {
+    dynamicHeight = false;
+  }
+  if (dynamicHeight) {
+    editor.onDidContentSizeChange(updateHeight);
+    updateHeight();
+  }
   // Handle the placeholder
   if (placeholderText !== '') {
     showPlaceholder('#' + placeholderId, editor.getValue());
