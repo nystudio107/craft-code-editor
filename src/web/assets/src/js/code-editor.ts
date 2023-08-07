@@ -81,8 +81,10 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
     modelUri = monaco.Uri.file(fieldOptions.fileName);
     monacoEditorLanguage = undefined;
   }
-  const textModel = monaco.editor.createModel(textArea.value, monacoEditorLanguage, modelUri);
-  defaultMonacoOptions.model = textModel;
+  // Only create the model if none exist already
+  if (monaco.editor.getModels().length === 0) {
+    defaultMonacoOptions.model = monaco.editor.createModel(textArea.value, monacoEditorLanguage, modelUri);
+  }
   // Set the editor theme here, so we don't re-apply it later
   monacoEditorOptions.theme = getEditorTheme(monacoEditorOptions?.theme);
   // Monaco editor defaults, coalesced together
@@ -117,6 +119,7 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
   textArea.style.display = 'none';
   // Create the Monaco editor
   const editor = monaco.editor.create(container, options);
+  const textModel: monaco.editor.ITextModel | null = editor.getModel();
   // Make the monaco editor instances available via the monacoEditorInstances global, since Twig macros can't return a value
   if (typeof window.monacoEditorInstances === 'undefined') {
     window.monacoEditorInstances = {};
