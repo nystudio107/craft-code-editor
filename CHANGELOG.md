@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## 1.0.12 - UNRELEASED
+## 1.0.12 - 2023.08.14
 ### Added
 * Check to see if any models exist before creating them, to allow for multiple instantiation of the same URI
 * Add `fixedHeightEditor` setting to `CodeEditorOptions` to allow for a scrolling editor in a fixed height frame inherited from the parent container
