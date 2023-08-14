@@ -245,7 +245,8 @@ You can pass in any options you like to `codeEditorOptions` (which might be used
 * **`singleLineEditor`** - `boolean` - Whether this editor should behave like a single line text field. This is set to `true` for the `text` and `textField` Twig macros, and `false` for the `textarea` and `textareaField` Twig macros.
 * **`placeholderText`** - `string` - Placeholder text that should be displayed if the Code Editor field is empty.
 * **`displayLanguageIcon`** - `boolean` - Whether the language icon should be displayed in the upper-right corner of the Code Editor, if available.
-
+* **fileName** - `string` - The name of the file being displayed, used to let Monaco determine the language to use based on the fileName suffix
+* **fixedHeightEditor** - `boolean` - Normally the editor will dynamically size to fit the content contained with it. If this option is set to `true` then instead, the editor will be a fixed height determined by its parent container (with a scrollbar when needed)
 
 ## Using Additional Autocompletes
 

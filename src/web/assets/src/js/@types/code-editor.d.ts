@@ -10,6 +10,7 @@ interface CodeEditorOptions {
   placeholderText?: string,
   displayLanguageIcon?: boolean,
   fileName?: string,
+  fixedHeightEditor?: boolean,
 
   [key: string]: unknown;
 }

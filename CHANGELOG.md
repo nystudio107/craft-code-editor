@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.12 - 2023.08.14
+### Added
+* Check to see if any models exist before creating them, to allow for multiple instantiation of the same URI
+* Add `fixedHeightEditor` setting to `CodeEditorOptions` to allow for a scrolling editor in a fixed height frame inherited from the parent container
+
 ## 1.0.11 - 2023.08.06
 ### Added
 * Add a `CodeEditorOptions.fileName` so that the name of the file to be edited can be passed down, and used for the `modelUri` so Monaco can auto-detect the correct editor to use based on the file extension
