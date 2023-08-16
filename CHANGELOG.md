@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.13 - 2023.08.15
+### Added
+* Revert checking to see if any models exist before creating them, to allow for multiple instantiation of the same URI... because as implemented, it doesn't allow multiple instances of the editor on the same page
+
 ## 1.0.12 - 2023.08.14
 ### Added
 * Check to see if any models exist before creating them, to allow for multiple instantiation of the same URI
