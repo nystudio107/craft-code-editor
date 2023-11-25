@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.14 - 2023.11.25
+### Added
+* Added a `maxEditorRows` setting to `CodeEditorOptions` to allow you to control the maximum number of rows before the editor is fixed height, and has a scrollbar
+* Update for Craft CMS `^5.0.0-alpha.1`
+
 ## 1.0.13 - 2023.08.15
 ### Added
 * Revert checking to see if any models exist before creating them, to allow for multiple instantiation of the same URI... because as implemented, it doesn't allow multiple instances of the editor on the same page
