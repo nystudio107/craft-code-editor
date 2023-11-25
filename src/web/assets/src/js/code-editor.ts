@@ -169,7 +169,11 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
   const updateHeight = () => {
     const width = editor.getLayoutInfo().width;
     const lineHeight = editor.getOption(EditorOption.lineHeight);
-    let contentHeight = Math.min(lineHeight * MAX_EDITOR_ROWS, editor.getContentHeight());
+    const maxEditorRows = fieldOptions.maxEditorRows ?? MAX_EDITOR_ROWS;
+    let contentHeight = editor.getContentHeight();
+    if (maxEditorRows !== 0) {
+      contentHeight = maxEditorRows;
+    }
     if (textArea instanceof HTMLTextAreaElement) {
       contentHeight = Math.max(textArea.rows * lineHeight, contentHeight)
     }

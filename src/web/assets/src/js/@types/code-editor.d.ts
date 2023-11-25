@@ -11,6 +11,7 @@ interface CodeEditorOptions {
   displayLanguageIcon?: boolean,
   fileName?: string,
   fixedHeightEditor?: boolean,
+  maxEditorRows: number,
 
   [key: string]: unknown;
 }

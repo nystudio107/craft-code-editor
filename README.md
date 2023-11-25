@@ -247,6 +247,7 @@ You can pass in any options you like to `codeEditorOptions` (which might be used
 * **`displayLanguageIcon`** - `boolean` - Whether the language icon should be displayed in the upper-right corner of the Code Editor, if available.
 * **fileName** - `string` - The name of the file being displayed, used to let Monaco determine the language to use based on the fileName suffix
 * **fixedHeightEditor** - `boolean` - Normally the editor will dynamically size to fit the content contained with it. If this option is set to `true` then instead, the editor will be a fixed height determined by its parent container (with a scrollbar when needed)
+* **maxEditorRows** - `number` - The maximum number of rows the editor can be before the height is fixed, and a scrollbar is added. Set this to `0` if you want an infinite number of rows, with no scrollbar. Defaults to `50`
 
 ## Using Additional Autocompletes
 
