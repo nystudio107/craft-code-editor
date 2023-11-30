@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.15 - 2023.11.30
+### Fixed
+* Fixed a regression that would cause the content height to be set to `50px` by default, when it should be growing to fix the available content
+
 ## 1.0.14 - 2023.11.25
 ### Added
 * Added a `maxEditorRows` setting to `CodeEditorOptions` to allow you to control the maximum number of rows before the editor is fixed height, and has a scrollbar
