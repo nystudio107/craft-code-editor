@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.16 - 2023.11.30
+### Changed
+* Update to `"monaco-editor": "^0.44.0"`
+
+### Fixed
+* Fixed an issue where the global `monaco` API object was no longer set properly by the `globalAPI: true` config setting, so we now manually set it on the `window` variable
+
 ## 1.0.15 - 2023.11.30
 ### Fixed
 * Fixed a regression that would cause the content height to be set to `50px` by default, when it should be growing to fix the available content
