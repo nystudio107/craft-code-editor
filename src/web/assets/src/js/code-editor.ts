@@ -305,6 +305,10 @@ function setMonacoEditorTheme(editor: monaco.editor.IStandaloneCodeEditor, theme
 }
 
 // Make the functions globally available
+// For whatever reason, setting `globalAPI: true` in the config no longer exposes the global `monaco` object,
+// so we just do it ourselves manually here for now
+// @ts-ignore
+window.monaco = monaco;
 window.makeMonacoEditor = makeMonacoEditor;
 window.setMonacoEditorLanguage = setMonacoEditorLanguage;
 window.setMonacoEditorTheme = setMonacoEditorTheme;
