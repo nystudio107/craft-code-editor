@@ -1,6 +1,6 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/quality-score.png?b=v5)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=v5) [![Code Coverage](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/coverage.png?b=v5)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=v5) [![Build Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/build.png?b=v5)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/build-status/v5) [![Code Intelligence Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/code-intelligence.svg?b=v5)](https://scrutinizer-ci.com/code-intelligence)
 
-# Code Editor for Craft CMS 3.x & 4.x
+# Code Editor for Craft CMS 3.x, 4.x & 5.0 
 
 Provides a code editor field with Twig & Craft API autocomplete
 
@@ -8,7 +8,7 @@ Provides a code editor field with Twig & Craft API autocomplete
 
 ## Requirements
 
-Code Editor requires Craft CMS 3.0 or 4.0.
+Code Editor requires Craft CMS 3.x, 4.x or 5.x.
 
 ## Installation
 
