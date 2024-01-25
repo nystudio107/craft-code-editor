@@ -1,4 +1,4 @@
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=develop) [![Code Coverage](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/coverage.png?b=develop)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=develop) [![Build Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/build.png?b=develop)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/build-status/develop) [![Code Intelligence Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/code-intelligence.svg?b=develop)](https://scrutinizer-ci.com/code-intelligence)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/quality-score.png?b=v4)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=v4) [![Code Coverage](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/coverage.png?b=v4)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=v4) [![Build Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/build.png?b=v4)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/build-status/v4) [![Code Intelligence Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/code-intelligence.svg?b=v4)](https://scrutinizer-ci.com/code-intelligence)
 
 # Code Editor for Craft CMS 3.x & 4.x
 
@@ -52,7 +52,7 @@ It can be very easy to add to an existing project, as you can see from the [Prep
 
 ### In the Craft CP
 
-Code Editor works just like the Craft CMS `forms` macros that should be familiar to plugin and module developers.
+Code Editor works just like the Craft CMS `forms` macros that should be familiar to plugin and module v4ers.
 
 #### Import Macros
 
@@ -330,7 +330,7 @@ Note that all of the above examples _add_ Autocompletes to the Autocompletes tha
 
 ## Writing a Custom Autocomplete
 
-Autocompletes extend from the base [Autocomplete](https://github.com/nystudio107/craft-code-editor/blob/develop/src/base/Autocomplete.php) class, and implement the [AutocompleteInterface](https://github.com/nystudio107/craft-code-editor/blob/develop/src/base/AutocompleteInterface.php)
+Autocompletes extend from the base [Autocomplete](https://github.com/nystudio107/craft-code-editor/blob/v4/src/base/Autocomplete.php) class, and implement the [AutocompleteInterface](https://github.com/nystudio107/craft-code-editor/blob/v4/src/base/AutocompleteInterface.php)
 
 A simple Autocomplete would look like this:
 
@@ -376,18 +376,18 @@ Your Autocomplete also has a `$codeEditorOptions` property which will contain an
 
 See the following examples for custom Autocompletes that you can use as a guide when creating your own:
 
-* [TrackingVarsAutocomplete](https://github.com/nystudio107/craft-seomatic/blob/develop/src/autocompletes/TrackingVarsAutocomplete.php)
-* [SprigApiAutocomplete](https://github.com/putyourlightson/craft-sprig/blob/develop/src/autocompletes/SprigApiAutocomplete.php)
-* [CraftApiAutocomplete](https://github.com/nystudio107/craft-code-editor/blob/develop/src/autocompletes/CraftApiAutocomplete.php)
-* [EnvironmentVariableAutocomplete](https://github.com/nystudio107/craft-code-editor/blob/develop/src/autocompletes/EnvironmentVariableAutocomplete.php)
-* [TwigLanguageAutocomplete](https://github.com/nystudio107/craft-code-editor/blob/develop/src/autocompletes/TwigLanguageAutocomplete.php)
+* [TrackingVarsAutocomplete](https://github.com/nystudio107/craft-seomatic/blob/v4/src/autocompletes/TrackingVarsAutocomplete.php)
+* [SprigApiAutocomplete](https://github.com/putyourlightson/craft-sprig/blob/v4/src/autocompletes/SprigApiAutocomplete.php)
+* [CraftApiAutocomplete](https://github.com/nystudio107/craft-code-editor/blob/v4/src/autocompletes/CraftApiAutocomplete.php)
+* [EnvironmentVariableAutocomplete](https://github.com/nystudio107/craft-code-editor/blob/v4/src/autocompletes/EnvironmentVariableAutocomplete.php)
+* [TwigLanguageAutocomplete](https://github.com/nystudio107/craft-code-editor/blob/v4/src/autocompletes/TwigLanguageAutocomplete.php)
 
 ## Twig Template Validators
 
 Code Editor also includes two Twig template [Validators](https://www.yiiframework.com/doc/guide/2.0/en/tutorial-core-validators) that you can use to validate Twig templates that are saved as part of a model:
 
-* [TwigTemplateValidator](https://github.com/nystudio107/craft-code-editor/blob/develop/src/validators/TwigTemplateValidator.php) - validates the template via `renderString()`
-* [TwigObjectTemplateValidator](https://github.com/nystudio107/craft-code-editor/blob/develop/src/validators/TwigObjectTemplateValidator.php) - validates the template via `renderObjectTemplate()`
+* [TwigTemplateValidator](https://github.com/nystudio107/craft-code-editor/blob/v4/src/validators/TwigTemplateValidator.php) - validates the template via `renderString()`
+* [TwigObjectTemplateValidator](https://github.com/nystudio107/craft-code-editor/blob/v4/src/validators/TwigObjectTemplateValidator.php) - validates the template via `renderObjectTemplate()`
 
 You just add them as a rule on your model, and it will propagate the model with any errors that were encountered when rendering the template:
 
@@ -445,7 +445,7 @@ The Monaco editor that the Code Editor is based on supports [JSON Schema](https:
 
 You can play with an example of this in the [Monaco playground](https://microsoft.github.io/monaco-editor/playground.html?source=v0.37.1#example-extending-language-services-configure-json-defaults)
 
-Code Editor adds some support to make it a bit easier to do, here's an example from the Craft [Code Field plugin](https://github.com/nystudio107/craft-code-field) on one way to do it via a [Twig template](https://github.com/nystudio107/craft-code-field/blob/develop-v3/src/templates/_components/fields/Code_settings.twig#L162):
+Code Editor adds some support to make it a bit easier to do, here's an example from the Craft [Code Field plugin](https://github.com/nystudio107/craft-code-field) on one way to do it via a [Twig template](https://github.com/nystudio107/craft-code-field/blob/v4/src/templates/_components/fields/Code_settings.twig#L161):
 
 ```js
 {% js %}
@@ -464,7 +464,7 @@ monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
 {% endjs %}
 ```
 
-...where the `optionsSchema` variable is [injected into the template](https://github.com/nystudio107/craft-code-field/blob/develop-v3/src/fields/Code.php#L161), and contains the contents of the [`IEditorOptionsSchema.json`](https://github.com/nystudio107/craft-code-field/blob/develop-v3/src/resources/IEditorOptionsSchema.json) file.
+...where the `optionsSchema` variable is [injected into the template](https://github.com/nystudio107/craft-code-field/blob/v4/src/fields/Code.php#L163), and contains the contents of the [`IEditorOptionsSchema.json`](https://github.com/nystudio107/craft-code-field/blob/v4/src/resources/IEditorOptionsSchema.json) file.
 
 You could alternatively grab this file via an XHR from an Asset Bundle, or just inline the schema definition directly.
 
