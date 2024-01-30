@@ -46,7 +46,7 @@ class TwigObjectTemplateValidator extends Validator
      * );
      * ```
      */
-    const EVENT_REGISTER_TWIG_VALIDATOR_VARIABLES = 'registerTwigValidatorVariables';
+    public const EVENT_REGISTER_TWIG_VALIDATOR_VARIABLES = 'registerTwigValidatorVariables';
 
     /**
      * @var mixed The object that should be passed into `renderObjectTemplate()` during the template rendering

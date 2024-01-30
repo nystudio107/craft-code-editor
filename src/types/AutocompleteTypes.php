@@ -21,6 +21,6 @@ abstract class AutocompleteTypes
     // =========================================================================
 
     // Faux enum, No proper enums until PHP 8.1, and no constant visibility until PHP 7.1
-    const TwigExpressionAutocomplete = 'TwigExpressionAutocomplete';
-    const GeneralAutocomplete = 'GeneralAutocomplete';
+    public const TwigExpressionAutocomplete = 'TwigExpressionAutocomplete';
+    public const GeneralAutocomplete = 'GeneralAutocomplete';
 }

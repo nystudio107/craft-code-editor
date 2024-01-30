@@ -67,9 +67,9 @@ class AutocompleteService extends Component
      *
      * ```
      */
-    const EVENT_REGISTER_CODEEDITOR_AUTOCOMPLETES = 'registerCodeFieldAutocompletes';
+    public const EVENT_REGISTER_CODEEDITOR_AUTOCOMPLETES = 'registerCodeFieldAutocompletes';
 
-    const AUTOCOMPLETE_CACHE_TAG = 'CodeEditorAutocompleteTag';
+    public const AUTOCOMPLETE_CACHE_TAG = 'CodeEditorAutocompleteTag';
 
     // Public Properties
     // =========================================================================
@@ -98,7 +98,7 @@ class AutocompleteService extends Component
             $this->cacheDuration = 1;
         }
         // Invalidate any SectionShorthandFieldsAutocomplete caches whenever any field layout is edited
-        Event::on(Fields::class, Fields::EVENT_AFTER_SAVE_FIELD_LAYOUT, function (SectionEvent $e) {
+        Event::on(Fields::class, Fields::EVENT_AFTER_SAVE_FIELD_LAYOUT, function(SectionEvent $e) {
             $this->clearAutocompleteCache(SectionShorthandFieldsAutocomplete::class);
         });
     }
@@ -141,7 +141,7 @@ class AutocompleteService extends Component
                 ],
             ]);
             // Get the autocompletes from the cache, or generate them if they aren't cached
-            $autocompleteItems[$name] = $cache->getOrSet($cacheKey, static function () use ($name, $autocomplete) {
+            $autocompleteItems[$name] = $cache->getOrSet($cacheKey, static function() use ($name, $autocomplete) {
                 $autocomplete->generateCompleteItems();
                 return [
                     'name' => $name,

@@ -27,9 +27,9 @@ class CraftApiAutocomplete extends ObjectParserAutocomplete
     // Constants
     // =========================================================================
 
-    const ELEMENT_ROUTE_EXCLUDES = [
+    public const ELEMENT_ROUTE_EXCLUDES = [
         'matrixblock',
-        'globalset'
+        'globalset',
     ];
 
     // Public Properties

@@ -40,7 +40,7 @@ class SectionShorthandFieldsAutocomplete extends ObjectParserAutocomplete
             'type' => "the entry type",
             'section' => "the entry’s section",
             'author' => "the entry’s author",
-        ]
+        ],
     ];
 
     // Public Properties
@@ -133,7 +133,7 @@ class SectionShorthandFieldsAutocomplete extends ObjectParserAutocomplete
                 foreach ($entryTypes as $entryType) {
                     // Add the native fields in
                     if ($entryType->elementType) {
-                        $element = new $entryType->elementType;
+                        $element = new $entryType->elementType();
                         /* @var ElementInterface $element */
                         $this->parseObject('', $element, 0);
                         $this->addMagicGetterProperties($element);

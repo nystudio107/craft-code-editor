@@ -304,7 +304,7 @@ class CompleteItem extends Model
                     'sortText',
                     'tags',
                 ],
-                'string'
+                'string',
             ],
             [
                 [
@@ -313,7 +313,7 @@ class CompleteItem extends Model
                     'commitCharacters',
                     'range',
                 ],
-                ArrayValidator::class
+                ArrayValidator::class,
             ],
             ['insertTextRules', 'integer', 'min' => 0, 'max' => 4],
             ['kind', 'integer', 'min' => 0, 'max' => 27],
@@ -323,7 +323,7 @@ class CompleteItem extends Model
                     'insertText',
                     'kind',
                 ],
-                'required'
+                'required',
             ],
         ];
     }

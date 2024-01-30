@@ -23,6 +23,6 @@ abstract class CompletionItemInsertTextRule
     // =========================================================================
 
     // Faux enum, No proper enums until PHP 8.1, and no constant visibility until PHP 7.1
-    const InsertAsSnippet = 4;
-    const KeepWhitespace = 1;
+    public const InsertAsSnippet = 4;
+    public const KeepWhitespace = 1;
 }
