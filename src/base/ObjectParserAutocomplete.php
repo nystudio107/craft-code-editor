@@ -251,7 +251,7 @@ abstract class ObjectParserAutocomplete extends Autocomplete implements ObjectPa
                     if ((PHP_MAJOR_VERSION >= 7 && PHP_MINOR_VERSION >= 4) || (PHP_MAJOR_VERSION >= 8)) {
                         if ($reflectionProperty->hasType()) {
                             $reflectionType = $reflectionProperty->getType();
-                            if ($reflectionType instanceof ReflectionNamedType) {
+                            if ($reflectionType instanceof \ReflectionNamedType) {
                                 $type = $reflectionType->getName();
                                 $detail = $type;
                             }
@@ -314,13 +314,16 @@ abstract class ObjectParserAutocomplete extends Autocomplete implements ObjectPa
             if ($methodAllowed && $reflectionMethod->isPublic()) {
                 $docblock = null;
                 $docs = $this->getDocs($reflectionMethod, $factory);
+                if (!empty($docs)) {
+                    $docblock = $factory->create($docs);
+                }
                 $detail = $methodName . '(';
                 $params = $reflectionMethod->getParameters();
                 $paramList = [];
                 foreach ($params as $param) {
                     if ($param->hasType()) {
                         $reflectionType = $param->getType();
-                        if ($reflectionType instanceof ReflectionUnionType) {
+                        if ($reflectionType instanceof \ReflectionUnionType) {
                             $unionTypes = $reflectionType->getTypes();
                             $typeName = '';
                             foreach ($unionTypes as $unionType) {
@@ -328,7 +331,7 @@ abstract class ObjectParserAutocomplete extends Autocomplete implements ObjectPa
                             }
                             $typeName = trim($typeName, '|');
                             $paramList[] = $typeName . ': ' . '$' . $param->getName();
-                        } else {
+                        } else if ($param->getType() instanceof \ReflectionNamedType) {
                             $paramList[] = $param->getType()->getName() . ': ' . '$' . $param->getName();
                         }
                     } else {

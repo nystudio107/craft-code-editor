@@ -37,7 +37,7 @@ class EnvironmentVariableAutocomplete extends Autocomplete
     public $type = AutocompleteTypes::GeneralAutocomplete;
 
     /**
-     * @var string Whether the autocomplete should be parsed with . -delimited nested sub-properties
+     * @var bool Whether the autocomplete should be parsed with . -delimited nested sub-properties
      */
     public $hasSubProperties = false;
 
