@@ -21,5 +21,5 @@ return [
     'Twig Tag' => 'Twig Tag',
     'Custom Field Shorthand' => 'Custom Field Shorthand',
     'Code Editor field.' => 'Code Editor field.',
-    'code is supported.' => 'code is supported.'
+    'code is supported.' => 'code is supported.',
 ];

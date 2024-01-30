@@ -27,7 +27,7 @@ abstract class Autocomplete extends Model implements AutocompleteInterface
     // Constants
     // =========================================================================
 
-    const COMPLETION_KEY = '__completions';
+    public const COMPLETION_KEY = '__completions';
 
     // Public Properties
     // =========================================================================
@@ -88,9 +88,9 @@ abstract class Autocomplete extends Model implements AutocompleteInterface
             $path = $item->label;
         }
         ArrayHelper::setValue($this->completeItems, $path, [
-            self::COMPLETION_KEY => array_filter($item->toArray(), static function ($v) {
+            self::COMPLETION_KEY => array_filter($item->toArray(), static function($v) {
                 return !is_null($v);
-            })
+            }),
         ]);
     }
 

@@ -40,7 +40,7 @@ class SectionShorthandFieldsAutocomplete extends ObjectParserAutocomplete
             'type' => "the entry type",
             'section' => "the entry’s section",
             'author' => "the entry’s author",
-        ]
+        ],
     ];
 
     // Public Properties
@@ -57,7 +57,7 @@ class SectionShorthandFieldsAutocomplete extends ObjectParserAutocomplete
     public $type = AutocompleteTypes::TwigExpressionAutocomplete;
 
     /**
-     * @var string Whether the autocomplete should be parsed with . -delimited nested sub-properties
+     * @var bool Whether the autocomplete should be parsed with . -delimited nested sub-properties
      */
     public $hasSubProperties = true;
 
@@ -118,15 +118,22 @@ class SectionShorthandFieldsAutocomplete extends ObjectParserAutocomplete
 
                 return;
             }
+            $sections = null;
+            // getSections() is used for Craft 3 & 4
+            if (method_exists(Craft::$app, 'getSections')) {
+                $sections = Craft::$app->getSections();
+            }
+            // getEntries() is used for Craft 5
+            if (method_exists(Craft::$app, 'getEntries')) {
+                $sections = Craft::$app->getEntries();
+            }
             // Find the entry types used in the passed in sectionId
-            $sections = Craft::$app->getSections();
-            $section = $sections->getSectionById($this->sectionId);
-            if ($section) {
+            if ($sections && $section = $sections->getSectionById($this->sectionId)) {
                 $entryTypes = $section->getEntryTypes();
                 foreach ($entryTypes as $entryType) {
                     // Add the native fields in
                     if ($entryType->elementType) {
-                        $element = new $entryType->elementType;
+                        $element = new $entryType->elementType();
                         /* @var ElementInterface $element */
                         $this->parseObject('', $element, 0);
                         $this->addMagicGetterProperties($element);

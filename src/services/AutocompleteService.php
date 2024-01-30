@@ -15,8 +15,8 @@ use craft\base\Component;
 use craft\events\SectionEvent;
 use craft\services\Fields;
 use nystudio107\codeeditor\autocompletes\SectionShorthandFieldsAutocomplete;
+use nystudio107\codeeditor\base\Autocomplete;
 use nystudio107\codeeditor\base\Autocomplete as BaseAutoComplete;
-use nystudio107\codeeditor\base\AutocompleteInterface;
 use nystudio107\codeeditor\CodeEditor;
 use nystudio107\codeeditor\events\RegisterCodeEditorAutocompletesEvent;
 use yii\base\Event;
@@ -67,9 +67,9 @@ class AutocompleteService extends Component
      *
      * ```
      */
-    const EVENT_REGISTER_CODEEDITOR_AUTOCOMPLETES = 'registerCodeFieldAutocompletes';
+    public const EVENT_REGISTER_CODEEDITOR_AUTOCOMPLETES = 'registerCodeFieldAutocompletes';
 
-    const AUTOCOMPLETE_CACHE_TAG = 'CodeEditorAutocompleteTag';
+    public const AUTOCOMPLETE_CACHE_TAG = 'CodeEditorAutocompleteTag';
 
     // Public Properties
     // =========================================================================
@@ -98,7 +98,7 @@ class AutocompleteService extends Component
             $this->cacheDuration = 1;
         }
         // Invalidate any SectionShorthandFieldsAutocomplete caches whenever any field layout is edited
-        Event::on(Fields::class, Fields::EVENT_AFTER_SAVE_FIELD_LAYOUT, function (SectionEvent $e) {
+        Event::on(Fields::class, Fields::EVENT_AFTER_SAVE_FIELD_LAYOUT, function(SectionEvent $e) {
             $this->clearAutocompleteCache(SectionShorthandFieldsAutocomplete::class);
         });
     }
@@ -141,7 +141,7 @@ class AutocompleteService extends Component
                 ],
             ]);
             // Get the autocompletes from the cache, or generate them if they aren't cached
-            $autocompleteItems[$name] = $cache->getOrSet($cacheKey, static function () use ($name, $autocomplete) {
+            $autocompleteItems[$name] = $cache->getOrSet($cacheKey, static function() use ($name, $autocomplete) {
                 $autocomplete->generateCompleteItems();
                 return [
                     'name' => $name,
@@ -172,11 +172,11 @@ class AutocompleteService extends Component
     /**
      * Return the cache key to use for an Autocomplete's complete items
      *
-     * @param AutocompleteInterface $autocomplete
+     * @param Autocomplete $autocomplete
      * @param array $config
      * @return string
      */
-    public function getAutocompleteCacheKey(AutocompleteInterface $autocomplete, array $config): string
+    public function getAutocompleteCacheKey(Autocomplete $autocomplete, array $config): string
     {
         return $this->cacheKeyPrefix . $autocomplete->name . md5(serialize($config));
     }
@@ -187,7 +187,7 @@ class AutocompleteService extends Component
     /**
      * Returns all available autocompletes classes.
      *
-     * @return string[] The available autocompletes classes
+     * @return array The available autocompletes classes
      */
     public function getAllAutocompleteGenerators(string $fieldType = CodeEditor::DEFAULT_FIELD_TYPE): array
     {

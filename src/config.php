@@ -32,5 +32,5 @@ return [
         CraftApiAutocomplete::class,
         TwigLanguageAutocomplete::class,
         SectionShorthandFieldsAutocomplete::class,
-    ]
+    ],
 ];

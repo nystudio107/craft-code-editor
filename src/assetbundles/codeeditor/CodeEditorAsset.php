@@ -38,7 +38,7 @@ class CodeEditorAsset extends AssetBundle
         $this->js = [
             'js/runtime.js',
             'js/vendors.js',
-            'js/code-editor.js'
+            'js/code-editor.js',
         ];
 
         parent::init();

@@ -27,8 +27,8 @@ class TwigLanguageAutocomplete extends Autocomplete
     // Constants
     // =========================================================================
 
-    const CRAFT_FILTER_DOCS_URL = 'https://craftcms.com/docs/4.x/dev/filters.html';
-    const FILTER_DOCS = [
+    public const CRAFT_FILTER_DOCS_URL = 'https://craftcms.com/docs/4.x/dev/filters.html';
+    public const FILTER_DOCS = [
         'abs' => '[abs](https://twig.symfony.com/doc/3.x/filters/abs.html) | Returns the absolute value of a number.',
         'address' => '[address](#address) | Formats an address.',
         'append' => '[append](#append) | Appends HTML to the end of another element.',
@@ -128,8 +128,8 @@ class TwigLanguageAutocomplete extends Autocomplete
         'withoutKey' => '[withoutKey](#withoutkey) | Returns an array without the specified key.',
     ];
 
-    const CRAFT_FUNCTION_DOCS_URL = 'https://craftcms.com/docs/4.x/dev/functions.html';
-    const FUNCTION_DOCS = [
+    public const CRAFT_FUNCTION_DOCS_URL = 'https://craftcms.com/docs/4.x/dev/functions.html';
+    public const FUNCTION_DOCS = [
         'actionInput' => '[actionInput](#actioninput) | Outputs a hidden `action` input.',
         'actionUrl' => '[actionUrl](#actionurl) | Generates a controller action URL.',
         'alias' => '[alias](#alias) | Parses a string as an alias.',
@@ -182,8 +182,8 @@ class TwigLanguageAutocomplete extends Autocomplete
         'url' => '[url](#url) | Generates a URL.',
     ];
 
-    const CRAFT_TAG_DOCS_URL = 'https://craftcms.com/docs/4.x/dev/tags.html';
-    const TAG_DOCS = [
+    public const CRAFT_TAG_DOCS_URL = 'https://craftcms.com/docs/4.x/dev/tags.html';
+    public const TAG_DOCS = [
         'apply' => '[apply](https://twig.symfony.com/doc/3.x/tags/apply.html) | Applies Twig filters to the nested template code.',
         'autoescape' => '[autoescape](https://twig.symfony.com/doc/3.x/tags/autoescape.html) | Controls the escaping strategy for the nested template code.',
         'block' => '[block](https://twig.symfony.com/doc/3.x/tags/block.html) | Defines a template block.',
@@ -227,7 +227,7 @@ class TwigLanguageAutocomplete extends Autocomplete
         'with' => '[with](https://twig.symfony.com/doc/3.x/tags/with.html) | Creates a nested template scope.',
     ];
 
-    const ADDITIONAL_TAGS = [
+    public const ADDITIONAL_TAGS = [
         'else',
         'elseif',
         'endblock',
@@ -248,7 +248,7 @@ class TwigLanguageAutocomplete extends Autocomplete
     public $type = AutocompleteTypes::TwigExpressionAutocomplete;
 
     /**
-     * @var string Whether the autocomplete should be parsed with . -delimited nested sub-properties
+     * @var bool Whether the autocomplete should be parsed with . -delimited nested sub-properties
      */
     public $hasSubProperties = false;
 

@@ -27,9 +27,9 @@ class CraftApiAutocomplete extends ObjectParserAutocomplete
     // Constants
     // =========================================================================
 
-    const ELEMENT_ROUTE_EXCLUDES = [
+    public const ELEMENT_ROUTE_EXCLUDES = [
         'matrixblock',
-        'globalset'
+        'globalset',
     ];
 
     // Public Properties
@@ -46,7 +46,7 @@ class CraftApiAutocomplete extends ObjectParserAutocomplete
     public $type = AutocompleteTypes::TwigExpressionAutocomplete;
 
     /**
-     * @var string Whether the autocomplete should be parsed with . -delimited nested sub-properties
+     * @var bool Whether the autocomplete should be parsed with . -delimited nested sub-properties
      */
     public $hasSubProperties = true;
 

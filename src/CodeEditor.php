@@ -35,9 +35,9 @@ class CodeEditor extends Module implements BootstrapInterface
     // Constants
     // =========================================================================
 
-    const ID = 'codeeditor';
+    public const ID = 'codeeditor';
 
-    const DEFAULT_FIELD_TYPE = 'CodeEditor';
+    public const DEFAULT_FIELD_TYPE = 'CodeEditor';
 
     // Public Static Properties
     // =========================================================================
@@ -135,14 +135,14 @@ class CodeEditor extends Module implements BootstrapInterface
     public function registerEventHandlers(): void
     {
         // Base CP templates directory
-        Event::on(View::class, View::EVENT_REGISTER_CP_TEMPLATE_ROOTS, function (RegisterTemplateRootsEvent $e) {
+        Event::on(View::class, View::EVENT_REGISTER_CP_TEMPLATE_ROOTS, function(RegisterTemplateRootsEvent $e) {
             if (is_dir($baseDir = $this->getBasePath() . DIRECTORY_SEPARATOR . 'templates')) {
                 $e->roots[$this->id] = $baseDir;
             }
         });
         // Base Site templates directory
         if (self::$settings->allowTemplateAccess) {
-            Event::on(View::class, View::EVENT_REGISTER_SITE_TEMPLATE_ROOTS, function (RegisterTemplateRootsEvent $e) {
+            Event::on(View::class, View::EVENT_REGISTER_SITE_TEMPLATE_ROOTS, function(RegisterTemplateRootsEvent $e) {
                 if (is_dir($baseDir = $this->getBasePath() . DIRECTORY_SEPARATOR . 'templates')) {
                     $e->roots[$this->id] = $baseDir;
                 }

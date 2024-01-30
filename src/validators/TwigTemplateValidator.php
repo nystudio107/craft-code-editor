@@ -45,7 +45,7 @@ class TwigTemplateValidator extends Validator
      * );
      * ```
      */
-    const EVENT_REGISTER_TWIG_VALIDATOR_VARIABLES = 'registerTwigValidatorVariables';
+    public const EVENT_REGISTER_TWIG_VALIDATOR_VARIABLES = 'registerTwigValidatorVariables';
 
     // Public Properties
     // =========================================================================

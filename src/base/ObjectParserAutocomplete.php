@@ -17,6 +17,7 @@ use phpDocumentor\Reflection\DocBlockFactory;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;
+use ReflectionNamedType;
 use ReflectionUnionType;
 use yii\base\Behavior;
 use yii\base\InvalidConfigException;
@@ -32,25 +33,25 @@ abstract class ObjectParserAutocomplete extends Autocomplete implements ObjectPa
     // Constants
     // =========================================================================
 
-    const EXCLUDED_PROPERTY_NAMES = [
+    public const EXCLUDED_PROPERTY_NAMES = [
         'controller',
         'Controller',
         'CraftEdition',
         'CraftSolo',
         'CraftPro',
     ];
-    const EXCLUDED_BEHAVIOR_NAMES = [
+    public const EXCLUDED_BEHAVIOR_NAMES = [
         'fieldHandles',
         'hasMethods',
         'owner',
     ];
-    const EXCLUDED_PROPERTY_REGEXES = [
+    public const EXCLUDED_PROPERTY_REGEXES = [
         '^_',
     ];
-    const EXCLUDED_METHOD_REGEXES = [
+    public const EXCLUDED_METHOD_REGEXES = [
         '^_',
     ];
-    const RECURSION_DEPTH_LIMIT = 10;
+    public const RECURSION_DEPTH_LIMIT = 10;
 
     // Public Properties
     // =========================================================================
@@ -251,7 +252,7 @@ abstract class ObjectParserAutocomplete extends Autocomplete implements ObjectPa
                     if ((PHP_MAJOR_VERSION >= 7 && PHP_MINOR_VERSION >= 4) || (PHP_MAJOR_VERSION >= 8)) {
                         if ($reflectionProperty->hasType()) {
                             $reflectionType = $reflectionProperty->getType();
-                            if ($reflectionType instanceof ReflectionNamedType) {
+                            if ($reflectionType instanceof \ReflectionNamedType) {
                                 $type = $reflectionType->getName();
                                 $detail = $type;
                             }
@@ -314,6 +315,9 @@ abstract class ObjectParserAutocomplete extends Autocomplete implements ObjectPa
             if ($methodAllowed && $reflectionMethod->isPublic()) {
                 $docblock = null;
                 $docs = $this->getDocs($reflectionMethod, $factory);
+                if (!empty($docs)) {
+                    $docblock = $factory->create($docs);
+                }
                 $detail = $methodName . '(';
                 $params = $reflectionMethod->getParameters();
                 $paramList = [];
@@ -328,7 +332,7 @@ abstract class ObjectParserAutocomplete extends Autocomplete implements ObjectPa
                             }
                             $typeName = trim($typeName, '|');
                             $paramList[] = $typeName . ': ' . '$' . $param->getName();
-                        } else {
+                        } elseif ($param->getType() instanceof ReflectionNamedType) {
                             $paramList[] = $param->getType()->getName() . ': ' . '$' . $param->getName();
                         }
                     } else {

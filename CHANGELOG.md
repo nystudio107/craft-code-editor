@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.17 - 2024.01.29
+### Added
+* Compatibility with Craft CMS 5
+* Add `phpstan` and `ecs` code linting
+* Add `code-analysis.yaml` GitHub action
+
+### Changed
+* PHPstan code cleanup
+* ECS code cleanup
+
+### Fixed
+* Use `getSections()` for Craft 3 & 4, and use `getEntries()` for Craft 5
+
 ## 1.0.16 - 2023.11.30
 ### Changed
 * Update to `"monaco-editor": "^0.44.0"`

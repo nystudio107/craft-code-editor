@@ -1,6 +1,6 @@
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=develop) [![Code Coverage](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/coverage.png?b=develop)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=develop) [![Build Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/build.png?b=develop)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/build-status/develop) [![Code Intelligence Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/code-intelligence.svg?b=develop)](https://scrutinizer-ci.com/code-intelligence)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/quality-score.png?b=v5)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=v5) [![Code Coverage](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/coverage.png?b=v5)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/?branch=v5) [![Build Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/build.png?b=v5)](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/build-status/v5) [![Code Intelligence Status](https://scrutinizer-ci.com/g/nystudio107/craft-code-editor/badges/code-intelligence.svg?b=v5)](https://scrutinizer-ci.com/code-intelligence)
 
-# Code Editor for Craft CMS 3.x & 4.x
+# Code Editor for Craft CMS 3.x, 4.x & 5.0 
 
 Provides a code editor field with Twig & Craft API autocomplete
 
@@ -8,7 +8,7 @@ Provides a code editor field with Twig & Craft API autocomplete
 
 ## Requirements
 
-Code Editor requires Craft CMS 3.0 or 4.0.
+Code Editor requires Craft CMS 3.x, 4.x or 5.x.
 
 ## Installation
 
@@ -445,7 +445,7 @@ The Monaco editor that the Code Editor is based on supports [JSON Schema](https:
 
 You can play with an example of this in the [Monaco playground](https://microsoft.github.io/monaco-editor/playground.html?source=v0.37.1#example-extending-language-services-configure-json-defaults)
 
-Code Editor adds some support to make it a bit easier to do, here's an example from the Craft [Code Field plugin](https://github.com/nystudio107/craft-code-field) on one way to do it via a [Twig template](https://github.com/nystudio107/craft-code-field/blob/develop-v3/src/templates/_components/fields/Code_settings.twig#L162):
+Code Editor adds some support to make it a bit easier to do, here's an example from the Craft [Code Field plugin](https://github.com/nystudio107/craft-code-field) on one way to do it via a [Twig template](https://github.com/nystudio107/craft-code-field/blob/v5/src/templates/_components/fields/Code_settings.twig#L161):
 
 ```js
 {% js %}
@@ -464,7 +464,7 @@ monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
 {% endjs %}
 ```
 
-...where the `optionsSchema` variable is [injected into the template](https://github.com/nystudio107/craft-code-field/blob/develop-v3/src/fields/Code.php#L161), and contains the contents of the [`IEditorOptionsSchema.json`](https://github.com/nystudio107/craft-code-field/blob/develop-v3/src/resources/IEditorOptionsSchema.json) file.
+...where the `optionsSchema` variable is [injected into the template](https://github.com/nystudio107/craft-code-field/blob/v5/src/fields/Code.php#L161), and contains the contents of the [`IEditorOptionsSchema.json`](https://github.com/nystudio107/craft-code-field/blob/v5/src/resources/IEditorOptionsSchema.json) file.
 
 You could alternatively grab this file via an XHR from an Asset Bundle, or just inline the schema definition directly.
 
