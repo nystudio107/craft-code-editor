@@ -171,7 +171,7 @@ class SectionShorthandFieldsAutocomplete extends ObjectParserAutocomplete
     protected function addMagicGetterProperties(ElementInterface $element): void
     {
         foreach (self::MAGIC_GETTER_PROPERTIES as $key => $value) {
-            if ($key === $element::class) {
+            if ($key === get_class($element)) {
                 foreach ($value as $name => $docs) {
                     CompleteItem::create()
                         ->insertText($name)
