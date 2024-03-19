@@ -89,7 +89,7 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
   const options: monaco.editor.IStandaloneEditorConstructionOptions = {...defaultMonacoOptions, ...monacoEditorOptions}
   // Make a sibling div for the Monaco editor to live in
   container.id = elementId + '-monaco-editor';
-  container.classList.add('monaco-editor', 'relative', 'box-content', 'monaco-editor-codefield', 'h-full');
+  container.classList.add('monaco-editor', 'craft-code-editor-relative', 'craft-code-editor-box-content', 'monaco-editor-codefield', 'craft-code-editor-h-full');
   // Apply any passed in classes to the wrapper div
   const wrapperClass = fieldOptions.wrapperClass ?? '';
   if (wrapperClass !== '') {
@@ -110,7 +110,7 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
     const placeholder = document.createElement('div');
     placeholder.id = elementId + '-monaco-editor-placeholder';
     placeholder.innerHTML = placeholderText;
-    placeholder.classList.add('monaco-placeholder', 'p-2');
+    placeholder.classList.add('monaco-placeholder', 'craft-code-editor-p-2');
     container.appendChild(placeholder);
   }
   textArea.parentNode.insertBefore(container, textArea);
