@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.18 - UNRELEASED
+### Fixed
+* Fixed an issue that would cause the `SectionShorthandFieldsAutocomplete` to throw an exception if you were running PHP < 8.0 ([#1436](https://github.com/nystudio107/craft-seomatic/issues/1436))
+
 ## 1.0.17 - 2024.01.29
 ### Added
 * Compatibility with Craft CMS 5
