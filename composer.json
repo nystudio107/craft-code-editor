@@ -2,7 +2,7 @@
   "name": "nystudio107/craft-code-editor",
   "description": "Provides a code editor field with Twig & Craft API autocomplete",
   "type": "yii2-extension",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "keywords": [
     "code",
     "editor",
@@ -28,7 +28,7 @@
     }
   ],
   "require": {
-    "craftcms/cms": "^3.0.0 || ^4.0.0 || ^5.0.0-alpha.1",
+    "craftcms/cms": "^3.0.0 || ^4.0.0 || ^5.0.0-beta.1",
     "phpdocumentor/reflection-docblock": "^5.0.0"
   },
   "require-dev": {
@@ -37,7 +37,7 @@
     "craftcms/rector": "dev-main"
   },
   "scripts": {
-    "phpstan": "vendor/bin/phpstan --ansi --memory-limit=1G",
+    "phpstan": "phpstan --ansi --memory-limit=1G",
     "check-cs": "ecs check --ansi",
     "fix-cs": "ecs check --fix --ansi"
   },
