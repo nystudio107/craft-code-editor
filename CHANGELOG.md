@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 1.0.18 - UNRELEASED
 ### Fixed
 * Fixed an issue that would cause the `SectionShorthandFieldsAutocomplete` to throw an exception if you were running PHP < 8.0 ([#7](https://github.com/nystudio107/craft-code-editor/issues/7))
+* Prefix the generated Tailwind CSS (which ironically, we're not using anyway) with `craft-code-editor-` to avoid namespace collisions ([#8](https://github.com/nystudio107/craft-code-editor/issues/8))
 
 ## 1.0.17 - 2024.01.29
 ### Added
