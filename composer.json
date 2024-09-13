@@ -2,7 +2,7 @@
   "name": "nystudio107/craft-code-editor",
   "description": "Provides a code editor field with Twig & Craft API autocomplete",
   "type": "yii2-extension",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "keywords": [
     "code",
     "editor",
