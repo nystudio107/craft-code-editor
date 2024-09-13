@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.21 - 2024.09.12
+### Changed
+* Update to `"monaco-editor": "^0.50.0"`
+
+### Fixed
+* Removes errors when editing CSS code that contains native CSS nesting or `:has()` selectors [monaco-editor #4071](https://github.com/microsoft/monaco-editor/issues/4071)
+
 ## 1.0.20 - 2024.08.21
 ### Fixed
 * Fixed an issue where the autocomplete endpoint could throw a `500` error when attempting to parse properties such as the `sso` property with an insufficient edition of Craft
