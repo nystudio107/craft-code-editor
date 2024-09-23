@@ -264,6 +264,9 @@ abstract class ObjectParserAutocomplete extends Autocomplete implements ObjectPa
                             if (is_array($value)) {
                                 $value = json_encode($value);
                             }
+                            if (is_object($value) && !method_exists($value, '__toString')) {
+                                $value = '';
+                            }
                             if (!empty($value)) {
                                 $detail = (string)$value;
                             }
