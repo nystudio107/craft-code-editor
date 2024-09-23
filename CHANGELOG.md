@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.22 - 2024.09.23
+### Fixed
+* Handle PHP >= 8.1 enums properly
+
 ## 1.0.21 - 2024.09.12
 ### Changed
 * Update to `"monaco-editor": "^0.50.0"`
