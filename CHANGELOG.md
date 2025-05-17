@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.23 - 2025.05.17
+### Fixed
+* Dispose of editor models that already exist when making editor ([#13](https://github.com/nystudio107/craft-code-editor/pull/13))
+
 ## 1.0.22 - 2024.09.23
 ### Fixed
 * Handle PHP >= 8.1 enums properly
