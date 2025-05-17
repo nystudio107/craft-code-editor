@@ -3,5 +3,7 @@ includes:
 
 parameters:
     level: 5
+    phpVersion:
+        min: 70205 # PHP 7.2.5
     paths:
         - src
