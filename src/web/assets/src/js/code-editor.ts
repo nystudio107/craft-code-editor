@@ -81,6 +81,7 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
     modelUri = monaco.Uri.file(fieldOptions.fileName);
     monacoEditorLanguage = undefined;
   }
+  monaco.editor.getModel(modelUri)?.dispose();
   const textModel = monaco.editor.createModel(textArea.value, monacoEditorLanguage, modelUri);
   defaultMonacoOptions.model = textModel;
   // Set the editor theme here, so we don't re-apply it later
