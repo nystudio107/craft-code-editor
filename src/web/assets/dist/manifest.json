@@ -1,6 +1,7 @@
 {
   "code-editor.js": "js/code-editor.js",
   "runtime.js": "js/runtime.js",
+  "js/614.js": "js/614.js",
   "vendors.css": "css/vendors.css",
   "vendors.js": "js/vendors.js",
   "styles.css": "css/styles.css",
@@ -12,5 +13,6 @@
   "fonts/codicon.ttf": "fonts/codicon.ttf",
   "code-editor.js.map": "js/code-editor.js.map",
   "runtime.js.map": "js/runtime.js.map",
+  "614.js.map": "js/614.js.map",
   "vendors.js.map": "js/vendors.js.map"
 }
