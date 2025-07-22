@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.24 - 2025.07.22
+### Fixed
+* Update monaco-editor to address DOMPurify 3.0.5 vulnerabilities ([#14](https://github.com/nystudio107/craft-code-editor/issues/14)) via ([#15](https://github.com/nystudio107/craft-code-editor/pull/15))
+
 ## 1.0.23 - 2025.05.17
 ### Fixed
 * Dispose of editor models that already exist when making editor ([#13](https://github.com/nystudio107/craft-code-editor/pull/13))
