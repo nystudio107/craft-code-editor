@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.26 - 2025.07.28
+### Fixed
+* Make sure the Monaco editor respects the **Underline links** setting in Craft, so it keeps them underlined if the setting is on
+
 ## 1.0.25 - 2025.07.28
 ### Fixed
 * Unless the class `underline-links` was already in the `<body>` tag, remove it because the Monaco editor added it during initialization, and there doesn't appear to be a way to configure the `accessibility.underlineLinks` setting via [IEditorOptions](https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IEditorOptions.html) ([#16](https://github.com/nystudio107/craft-code-editor/issues/16))
