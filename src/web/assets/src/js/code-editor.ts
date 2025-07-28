@@ -240,9 +240,7 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
   // editor added it during initialization, and there doesn't appear to be a way to configure the
   // `accessibility.underlineLinks` setting via IEditorOptions
   // ref: https://github.com/nystudio107/craft-code-editor/issues/16
-  if (!hasUnderlineLinksBodyClass) {
-    document.body.classList.remove('underline-links');
-  }
+  document.body.classList.toggle('underline-links', hasUnderlineLinksBodyClass);
 
   return editor;
 }
