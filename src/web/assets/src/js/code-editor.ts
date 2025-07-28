@@ -60,6 +60,8 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
   if (textArea === null || textArea.parentNode === null) {
     return;
   }
+  // See if the `underline-links` class has already been added to the <body> element
+  const hasUnderlineLinksBodyClass = document.body.classList.contains('underline-links');
   // Monaco editor options passed in from the config
   const monacoEditorOptions: monaco.editor.IStandaloneEditorConstructionOptions = JSON.parse(monacoOptions);
   // Set the scrollbar to hidden in defaultMonacoOptions if this is a single-line field
@@ -232,6 +234,14 @@ function makeMonacoEditor(elementId: string, fieldType: string, monacoOptions: s
     if (elem !== null) {
       elem.style.display = "none";
     }
+  }
+
+  // Unless the class `underline-links` was already in the <body> tag, remove it because the Monaco
+  // editor added it during initialization, and there doesn't appear to be a way to configure the
+  // `accessibility.underlineLinks` setting via IEditorOptions
+  // ref: https://github.com/nystudio107/craft-code-editor/issues/16
+  if (!hasUnderlineLinksBodyClass) {
+    document.body.classList.remove('underline-links');
   }
 
   return editor;

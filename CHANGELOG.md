@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.25 - 2025.07.28
+### Fixed
+* Unless the class `underline-links` was already in the `<body>` tag, remove it because the Monaco editor added it during initialization, and there doesn't appear to be a way to configure the `accessibility.underlineLinks` setting via [IEditorOptions](https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IEditorOptions.html) ([#16](https://github.com/nystudio107/craft-code-editor/issues/16))
+
 ## 1.0.24 - 2025.07.22
 ### Fixed
 * Update monaco-editor to address DOMPurify 3.0.5 vulnerabilities ([#14](https://github.com/nystudio107/craft-code-editor/issues/14)) via ([#15](https://github.com/nystudio107/craft-code-editor/pull/15))
