@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.27 - 2025.12.13
+### Fixed
+* Resolved an issue where the bundle used DOMPurify 3.1.7 which is affected by CVE-2025-26791 ([#17](https://github.com/nystudio107/craft-code-editor/issues/17))
+
+### Changed
+* Update to use Node 22 & modernize the `buildchain`
+
 ## 1.0.26 - 2025.07.28
 ### Fixed
 * Make sure the Monaco editor respects the **Underline links** setting in Craft, so it keeps them underlined if the setting is on
