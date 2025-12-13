@@ -51,28 +51,6 @@ module.exports = (type = 'modern', settings) => {
                     name: 'img/[name].[ext]'
                   }
                 },
-                {
-                  loader: 'img-loader',
-                  options: {
-                    plugins: [
-                      require('imagemin-gifsicle')({
-                        interlaced: true,
-                      }),
-                      require('imagemin-mozjpeg')({
-                        progressive: true,
-                        arithmetic: false,
-                      }),
-                      require('imagemin-optipng')({
-                        optimizationLevel: 5,
-                      }),
-                      require('imagemin-svgo')({
-                        plugins: [
-                          {convertPathData: false},
-                        ]
-                      }),
-                    ]
-                  }
-                }
               ]
             },
           ],

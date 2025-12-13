@@ -1,10 +1,9 @@
-TAG?=16-alpine
+TAG?=22-alpine
 CONTAINER?=$(shell basename $(dir $(CURDIR)))-buildchain
 DOCKERRUN=docker container run \
 	--name ${CONTAINER} \
 	--rm \
 	-t \
-	-e CPPFLAGS="-DPNG_ARM_NEON_OPT=0" \
 	-v "${CURDIR}"/../:/app \
 	${CONTAINER}:${TAG}
 
