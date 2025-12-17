@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.28 - UNRELEASED
+### Fixed
+* Bump the version of `monaco-editor` to `^0.55.1` to actually fix the issue with DOMPurify 3.1.7 which is affected by CVE-2025-26791 ([#17](https://github.com/nystudio107/craft-code-editor/issues/17))
+
 ## 1.0.27 - 2025.12.13
 ### Fixed
 * Resolved an issue where the bundle used DOMPurify 3.1.7 which is affected by CVE-2025-26791 ([#17](https://github.com/nystudio107/craft-code-editor/issues/17))
