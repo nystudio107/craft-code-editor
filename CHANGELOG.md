@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.29 - 2026.01.30
+### Fixed
+* Roll the version of `monaco-editor` back down to `^0.54.0` to address a seeming regression in `0.55.x` that makes `monaco.languages.json` inaccessible ([#18](https://github.com/nystudio107/craft-code-editor/issues/18))
+
 ## 1.0.28 - 2025.12.17
 ### Fixed
 * Bump the version of `monaco-editor` to `^0.55.1` to actually fix the issue with DOMPurify 3.1.7 which is affected by CVE-2025-26791 ([#17](https://github.com/nystudio107/craft-code-editor/issues/17))
