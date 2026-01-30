@@ -1,10 +1,6 @@
 {
   "code-editor.js": "js/code-editor.js",
   "runtime.js": "js/runtime.js",
-  "js/682.js": "js/682.js",
-  "js/301.js": "js/301.js",
-  "js/444.js": "js/444.js",
-  "js/63.js": "js/63.js",
   "vendors.css": "css/vendors.css",
   "vendors.js": "js/vendors.js",
   "styles.css": "css/styles.css",
@@ -16,9 +12,5 @@
   "fonts/codicon.ttf": "fonts/codicon.ttf",
   "code-editor.js.map": "js/code-editor.js.map",
   "runtime.js.map": "js/runtime.js.map",
-  "682.js.map": "js/682.js.map",
-  "301.js.map": "js/301.js.map",
-  "444.js.map": "js/444.js.map",
-  "63.js.map": "js/63.js.map",
   "vendors.js.map": "js/vendors.js.map"
 }
