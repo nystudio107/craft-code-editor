@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## 1.0.29 - UNRELEASED
+## 1.0.29 - 2026.01.30
 ### Fixed
 * Roll the version of `monaco-editor` back down to `^0.54.0` to address a seeming regression in `0.55.x` that makes `monaco.languages.json` inaccessible ([#18](https://github.com/nystudio107/craft-code-editor/issues/18))
 
