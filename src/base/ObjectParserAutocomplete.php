@@ -22,7 +22,6 @@ use ReflectionNamedType;
 use ReflectionUnionType;
 use Throwable;
 use yii\base\Behavior;
-use yii\base\InvalidConfigException;
 use yii\di\ServiceLocator;
 
 /**
@@ -177,7 +176,7 @@ abstract class ObjectParserAutocomplete extends Autocomplete implements ObjectPa
                 $componentObject = null;
                 try {
                     $componentObject = $object->get($key);
-                } catch (InvalidConfigException $e) {
+                } catch (Throwable $e) {
                     // That's okay
                 }
                 if ($componentObject) {
